@@ -5,7 +5,11 @@ Estimator::Application.routes.draw do
   # You can have the root of your site routed with "root"
 root 'estimates#index'
 
-resource :estimates
+resources :estimates do
+  resources :tasks, :except => [:index]
+end
+
+# match 'project/:id/tasks/new' => 'tasks#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

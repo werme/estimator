@@ -1,3 +1,3 @@
 class Estimate < ActiveRecord::Base
-  has_many :tasks, :dependant => :destroy
+  has_many :tasks, :dependent => :destroy
 end

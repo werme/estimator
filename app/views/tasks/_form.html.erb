@@ -1,0 +1,9 @@
+<%= form_for :task, :url => estimate_tasks_path do |f| %>
+  <%= f.label :name %>:
+  <%= f.text_field :name %><br />
+  <%= f.label :rate %>:
+  <%= f.text_field :rate %><br />
+  <%= f.label :hours %>:
+  <%= f.text_field :hours %><br />
+  <%= f.submit %>
+<% end %>

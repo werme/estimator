@@ -1,5 +1,7 @@
-<%= link_to "New estimate", new_estimates_path %>
+<%= link_to "New project", new_estimate_path %>
 
-<% @estimates.each do |e| %>
-  <p><%= e.project %></p>
-<% end %>
+<ul>
+  <% @estimates.each do |e| %>
+    <li><%= link_to e.project, e %></li>
+  <% end %>
+</ul>
