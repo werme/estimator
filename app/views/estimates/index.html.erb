@@ -1,7 +1,16 @@
-<%= link_to "New project", new_estimate_path %>
-
-<ul>
-  <% @estimates.each do |e| %>
-    <li><%= link_to e.project, e %></li>
-  <% end %>
-</ul>
+<div class="front">
+  <h1 class="header">Estimator</h1>
+  <a href="<%= new_estimate_path %>" class="btn">
+    New project
+    <span>Click to create a new estimation project</span>
+  </a>
+  <a href="<%= settings_path %>" class="btn">
+    Settings
+    <span>Configure default fields and rates for new projects</span>
+  </a>
+  <section class="tags">
+    <% @estimates.each do |e| %>
+      <span class="tag"><%= link_to e.project, e %><%= link_to 'x', e, :method => :delete, :class => "cross" %></span>
+    <% end %>
+  </section>
+</div>

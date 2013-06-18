@@ -11,19 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130615103437) do
+ActiveRecord::Schema.define(version: 20130618145820) do
 
   create_table "estimates", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "default_rate"
     t.string   "project"
+    t.string   "description"
   end
 
   create_table "tasks", force: true do |t|
     t.string   "name"
     t.integer  "rate"
-    t.integer  "hours"
+    t.integer  "hours",       limit: 5
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "estimate_id"

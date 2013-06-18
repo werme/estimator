@@ -14,3 +14,40 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function () {
+
+  $('.header').on('click', function() {
+    $('footer').fadeToggle();
+  });
+
+
+  var YTMenu = (function() {
+
+    function init() {
+
+      var el      = document.querySelector( 'nav.hidden-menu' ),
+          trigger = document.querySelector( 'a.menu-trigger' ),
+          open    = false;
+
+      trigger.addEventListener( 'click', function( event ) {
+        event.preventDefault();
+        if( !open ) {
+            el.className += ' menu-open';
+            open = true;
+        } else {
+          event.stopPropagation();
+          open = false;
+          el.className = el.className.replace(/\bmenu-open\b/,'');
+          return false;
+        }
+      }, false );
+
+    }
+
+    init();
+
+  })();
+
+
+  });

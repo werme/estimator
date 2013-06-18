@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def show
-    @Task = Task.find(params[:id])
+    @task = Task.find(params[:id])
   end
 
   def new
@@ -10,11 +10,18 @@ class TasksController < ApplicationController
   def create
     task = Task.new(task_params)
     task.estimate = Estimate.find params[:estimate_id]
+
     if task.save
       redirect_to estimate_path Estimate.find params[:estimate_id]
     else
       redirect_to estimate_path Estimate.find params[:estimate_id]
     end
+  end
+
+  def destroy
+    task = Task.find params[:id]
+    task.destroy
+    redirect_to estimate_path Estimate.find params[:estimate_id]
   end
 
   private

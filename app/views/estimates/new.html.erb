@@ -1,5 +1,8 @@
-<%= form_for(@estimate) do |e| %>
-    <label for="estimate_project">Project name</label>
-    <input id="estimate_project" name="project" autocomplete="off" size="30" type="text" />
-    <button type="submit">Hej</button>
-<% end #form_for %>
+<section class="main">
+  <h1>New project</h1>
+  <%= form_for(@estimate) do |e| %>
+    <%= e.text_field :project, :placeholder => "Project name" %>
+    <%= e.text_area :description, :placeholder => "Description" %>
+    <%= e.submit "Create project" %>
+  <% end #form_for %>
+</section>

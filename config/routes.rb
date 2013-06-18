@@ -9,6 +9,8 @@ resources :estimates do
   resources :tasks, :except => [:index]
 end
 
+match 'settings' => 'settings#index', :as => 'settings', :via => :get
+
 # match 'project/:id/tasks/new' => 'tasks#new'
 
   # Example of regular route:

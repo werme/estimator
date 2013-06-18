@@ -1,8 +1,31 @@
-<h1><%= @estimate.project %></h1>
-<%= link_to "New task", new_estimate_task_path(@estimate) %>
+<h1>Project: <%= @estimate.project %></h1>
 
-<ul>
-  <% @estimate.tasks.each do |t| %>
-    <li><%= t.name %>, <%= t.rate %>, <%= t.hours %></li>
-  <% end %>
-</ul>
+<p><%= @estimate.description %></p>
+
+<% unless @estimate.tasks.empty? %>
+  <table>
+    <thead>
+      <td>Task</td><td>Rate</td><td></td><td>Hours</td><td></td><td>Fee</td><td></td>
+    </thead>
+    <tbody>
+      <% @estimate.tasks.each do |t| %>
+        <tr>
+          <td><%= t.name %></td>
+          <td><%= t.rate %></td>
+          <td><span>x</span></td>
+          <td><%= t.hours %></td>
+          <td><span>=</span></td>
+          <td><%= unless t.rate.nil? or t.hours.nil? then t.rate * t.hours end %></td>
+          <td><%= link_to "Delete", estimate_task_path(@estimate, t), :method => :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <p class="total">Total fee: <span><%= @total %></span></p>
+<% else %>
+  <p>This project has no tasks as of yet. You should create some, tasks are awesome. Just use the form below.</p>
+<% end %>
+
+<h2>Create new task</h2>
+<%= render :partial => "/tasks/form", :locals => { :task => @task } %>
