@@ -9,7 +9,16 @@ resources :estimates do
   resources :tasks, :except => [:index]
 end
 
+resources :project_types do
+  resources :tasks, :except => [:index]
+end
+
 match 'settings' => 'settings#index', :as => 'settings', :via => :get
+#match 'types/new' => 'project_types#new', :as => 'new_project_type', :via => :get
+#match 'project_types/:project_type_id/tasks' => 'tasks#create', :as => 'project_type_tasks', :via => :post
+
+#match 'project_types/:project_type_id/tasks/:id' => 'tasks#destroy', :as => 'project_type_task', :via => :delete
+#match 'project_types/:project_type_id/tasks/:id' => 'tasks#update', :via => :put
 
 # match 'project/:id/tasks/new' => 'tasks#new'
 

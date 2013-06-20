@@ -1,0 +1,4 @@
+<%= form_for @task, :url => project_type_task_path(project_type, @task) do |f| %>
+  <%= f.text_field :name, :placeholder => "Name for task" %>
+  <%= f.submit %>
+<% end %>

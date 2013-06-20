@@ -1,2 +1,9 @@
 <h1>Settings</h1>
-<p>Nothing here yet. Still great.</p>
+<h2>Project types</h2>
+<p>
+  <% @project_types.each do |p| %>
+    <span class="tag"><%= link_to p.name, p %><%= link_to 'x', p, :method => :delete, :class => "cross" %></span>
+  <% end %>
+</p>
+
+<%= link_to "New project type", new_project_type_path, class: "btn" %>

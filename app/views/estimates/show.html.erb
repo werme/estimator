@@ -10,13 +10,13 @@
     <tbody>
       <% @estimate.tasks.each do |t| %>
         <tr>
-          <td><%= t.name %></td>
+          <td><%= truncate(t.name, length: 18) %></td>
           <td><%= t.rate %></td>
           <td><span>x</span></td>
           <td><%= t.hours %></td>
           <td><span>=</span></td>
           <td><%= unless t.rate.nil? or t.hours.nil? then t.rate * t.hours end %></td>
-          <td><%= link_to "Delete", estimate_task_path(@estimate, t), :method => :delete %></td>
+          <td><%= link_to "Edit", edit_estimate_task_path(@estimate, t) %> <%= link_to "Delete", estimate_task_path(@estimate, t), :method => :delete %></td>
         </tr>
       <% end %>
     </tbody>
@@ -28,4 +28,4 @@
 <% end %>
 
 <h2>Create new task</h2>
-<%= render :partial => "/tasks/form", :locals => { :task => @task } %>
+<%= render partial: "/tasks/new_form"  %>

@@ -4,13 +4,13 @@
 $blue: #00A7E0;
 
 *, *:after, *:before {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    font: 130%/1.5 'proxima-nova';//'freight-sans-pro';
-    margin: 0 auto;
-    padding: 0 0 2em;
+  font: 130%/1.5 'proxima-nova';//'freight-sans-pro';
+  margin: 0 auto;
+  padding: 0 0 2em;
 }
 
 h1, h2, h3 {
@@ -26,6 +26,8 @@ a {
   color: $blue;
   text-decoration: none;
 }
+
+li { color: $blue; }
 
 .tag {
   display: inline-block;
@@ -102,13 +104,14 @@ footer {
 }
 
 .btn, input[type="submit"] {
-  padding: 0.6em 0.4em;
+  padding: 0.6em 1em;
   display: inline-block;
   position: relative;
   background: $blue;
   color: #fff;
   border: 0;
   transition: all 0.2s;
+  border-radius: 2px;
 }
 
 .btn span {
@@ -124,10 +127,12 @@ input[type="submit"]:active { background: #00BEFF; }
 
 .front .btn {
   margin: 1em 0;
+  padding: 0.6em 0;
   width: 45%;
   transition: all 0.2s;
   color: #fff;
   overflow: hidden;
+  border-radius: 0;
 }
 
 input[type="text"], textarea {
@@ -164,6 +169,15 @@ input, input[type="text"], input[type="submit"], textarea {
   width: 100%;
 }
 
+.inline {
+  input, input[type="text"], input[type="submit"], textarea {
+    display: inline-block;
+    width: auto;
+  }
+  input[type="submit"] { padding: 0.3em 0.6em; }
+
+}
+
 table {
   margin: 2em 0 1em;
   font: 0.8em/1.5 'source-code-pro';
@@ -175,15 +189,11 @@ table {
     text-transform: uppercase;
     font-size: 0.8em;
   }
-  tbody tr:nth-child(odd) {
-    background: #fff3e3;
-  }
+  tbody tr:nth-child(odd) { background: #fff3e3; }
+  tbody tr td:last-child { text-align: right; }
+  tbody tr:hover { color: #EE8943; }
 
-  tbody tr:hover {
-    color: #EE8943;
-  }
-
-  td { padding: 0.4em; }
+  td { padding: 0.4em; white-space: nowrap; }
 
   span {
     font-size: 0.8em;
@@ -203,8 +213,8 @@ table {
 }
 
 .hidden-menu {
-  margin-top: -140px;
-  height: 140px;
+  margin-top: -80px;
+  height: 80px;
 
   transition: all 0.4s;
 }

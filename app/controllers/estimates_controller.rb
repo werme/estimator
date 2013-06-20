@@ -16,6 +16,13 @@ class EstimatesController < ApplicationController
 
   def create
     estimate = Estimate.new(estimate_params)
+
+    unless params[:default][:project_type_id].empty?
+      project_type = ProjectType.find(params[:default][:project_type_id])
+      estimate.tasks = project_type.tasks
+      estimate.tasks.each { |t| t.rate = project_type.default_rate || 0; t.hours = 0 }
+    end
+
     if estimate.save
       redirect_to estimate_path Estimate.find estimate.id
     else

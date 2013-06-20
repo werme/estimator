@@ -1,6 +1,7 @@
-<%= form_for @task, :url => estimate_tasks_path(@estimate) do |f| %>
-  <%= f.text_field :name, :placeholder => "Name for task" %>
-  <%= f.text_field :rate, :placeholder => "Rate per hour for task" %>
-  <%= f.text_field :hours, :placeholder => "Estimated number of hours to complete task " %>
-  <%= f.submit %>
+<% if params[:estimate_id] %>
+  <%= render partial: '/tasks/estimate_task_form', locals: { estimate: params[:estimate_id] } %>
+<% elsif params[:project_type_id] %>
+  <%= render partial: '/tasks/project_type_task_form', locals: { project_type: params[:project_type_id] } %>
+<% else %>
+  <p>There is something special about this task. It's too cool for editing. Let's keep it as is.</p>
 <% end %>

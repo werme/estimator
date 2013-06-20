@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130618145820) do
+ActiveRecord::Schema.define(version: 20130620173440) do
 
   create_table "estimates", force: true do |t|
     t.datetime "created_at"
@@ -21,13 +21,23 @@ ActiveRecord::Schema.define(version: 20130618145820) do
     t.string   "description"
   end
 
+  create_table "project_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "task_id"
+    t.string   "description"
+    t.integer  "default_rate"
+  end
+
   create_table "tasks", force: true do |t|
     t.string   "name"
     t.integer  "rate"
-    t.integer  "hours",       limit: 5
+    t.integer  "hours",           limit: 5
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "estimate_id"
+    t.integer  "project_type_id"
   end
 
 end
