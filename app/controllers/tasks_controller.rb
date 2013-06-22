@@ -19,7 +19,6 @@ class TasksController < ApplicationController
     else
       redirect
     end
-
   end
 
   def create

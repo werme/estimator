@@ -24,9 +24,23 @@ class EstimatesController < ApplicationController
     end
 
     if estimate.save
-      redirect_to estimate_path Estimate.find estimate.id
+      redirect_to estimate
     else
       redirect_to estimates_path
+    end
+  end
+
+  def edit
+    @estimate = Estimate.find(params[:id])
+  end
+
+  def update
+    estimate = Estimate.find params[:id]
+
+    if estimate.update_attributes(estimate_params)
+      redirect_to estimate
+    else
+      redirect_to estimate
     end
   end
 

@@ -1,0 +1,7 @@
+%section.main
+  %h1 Edit project
+  = form_for(@estimate) do |e|
+    = e.text_field :project, :placeholder => "Project name"
+    = e.text_area :description, :placeholder => "Description"
+    = e.submit
+  - end #form_for

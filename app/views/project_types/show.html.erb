@@ -1,0 +1,41 @@
+<h1><%= @project_type.name %></h1>
+<p>
+  <% unless @project_type.description.empty? %>
+    <%= @project_type.description %>
+  <% else %>
+    This project type has no description. Did you know that a kitten dies every time someone creates a project without a proper description? Now you do.
+  <% end %>
+</p>
+
+<section class="inline">
+<%= form_for @project_type do |p| %>
+  <%= p.text_field :default_rate, :placeholder => @project_type.default_rate || "none", :size => 4 %>
+  <%= p.submit "Set default rate" %>
+<% end %>
+</section>
+
+<% unless @project_type.tasks.empty? %>
+  <table>
+    <thead>
+      <td>Task</td><td></td>
+    </thead>
+    <tbody>
+      <% @project_type.tasks.each do |t| %>
+        <tr>
+          <td><%= t.name %></td>
+          <td><%= link_to content_tag(:i, nil, class: "icon-edit"), edit_project_type_task_path(@project_type, t) %> <%= link_to content_tag(:i, nil, class: "icon-cancel"), project_type_task_path(@project_type, t), :method => :delete, class: "delete-icon" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>This project type has no tasks as of yet. You should create some, tasks are awesome. Just use the form below.</p>
+<% end %>
+
+<h2>Create new default task</h2>
+<%= render partial: '/tasks/new_form' %>
+
+<p class="project-icons">
+  <%= link_to content_tag(:i, nil, class: "icon-edit"), edit_project_type_path, title: "Edit project type title or description" %>
+  <%= link_to content_tag(:i, nil, class: "icon-trash"), @project_type, method: :delete, confirm: "Wait, really? This project type is awesome. Sure you want to delete?", class: "delete-icon", title: "Delete this project type" %>
+</p>

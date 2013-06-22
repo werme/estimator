@@ -1,6 +1,12 @@
-<h1>Project: <%= @estimate.project %></h1>
+<h1><span>Project:</span> <%= @estimate.project %></h1>
 
-<p><%= @estimate.description %></p>
+<p>
+  <% unless @estimate.description.nil? or @estimate.description.empty? %>
+    <%= @estimate.description %>
+  <% else %>
+    This project has no description. Did you know that a kitten dies every time someone creates a project without a proper description? Now you do.
+  <% end %>
+</p>
 
 <% unless @estimate.tasks.empty? %>
   <table>
@@ -16,7 +22,10 @@
           <td><%= t.hours %></td>
           <td><span>=</span></td>
           <td><%= unless t.rate.nil? or t.hours.nil? then t.rate * t.hours end %></td>
-          <td><%= link_to "Edit", edit_estimate_task_path(@estimate, t) %> <%= link_to "Delete", estimate_task_path(@estimate, t), :method => :delete %></td>
+          <td>
+            <%= link_to content_tag(:i, nil, :class => "icon-edit"), edit_estimate_task_path(@estimate, t) %>
+            <%= link_to content_tag(:i, nil, :class => "icon-cancel"), estimate_task_path(@estimate, t), :method => :delete, class: "delete-icon" %>
+          </td>
         </tr>
       <% end %>
     </tbody>
@@ -24,8 +33,13 @@
 
   <p class="total">Total fee: <span><%= @total %></span></p>
 <% else %>
-  <p>This project has no tasks as of yet. You should create some, tasks are awesome. Just use the form below.</p>
+  <p>You should go on and create some tasks.</p>
 <% end %>
 
 <h2>Create new task</h2>
 <%= render partial: "/tasks/new_form"  %>
+
+<p class="project-icons">
+  <%= link_to content_tag(:i, nil, class: "icon-edit"), edit_estimate_path, title: "Edit project title or description" %>
+  <%= link_to content_tag(:i, nil, class: "icon-trash"), @estimate, method: :delete, confirm: "Wait, really? This project is awesome. Sure you want to delete?", class: "delete-icon", title: "Delete this project" %>
+</p>
