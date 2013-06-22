@@ -1,7 +1,8 @@
-<% if current_page? estimate_path %>
-  <%= render partial: '/tasks/new_estimate_task_form', locals: { estimate: params[:id] } %>
-<% elsif current_page? project_type_path %>
-  <%= render partial: '/tasks/new_project_type_task_form', locals: { project_type: params[:id] } %>
-<% else %>
-  <p>You broke the app. Congratulations, <a href="http://www.youtube.com/watch?v=wZZ7oFKsKzY">go celebrate!</a></p>
-<% end %>
+- if current_page? estimate_path
+  = render partial: '/tasks/new_estimate_task_form', locals: { estimate: params[:id] }
+- elsif current_page? project_type_path
+  = render partial: '/tasks/new_project_type_task_form', locals: { project_type: params[:id] }
+- else
+  %p
+    You broke the app. Congratulations,
+    %a{ :href => "http://www.youtube.com/watch?v=wZZ7oFKsKzY" } go celebrate!
