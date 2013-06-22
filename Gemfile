@@ -34,6 +34,8 @@ group :assets do
   # gem "zurb-foundation"
 end
 
+gem 'haml-rails', :group => :development
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
