@@ -1,0 +1,42 @@
+%h1
+  %span Project:
+  = @estimate.project
+%p
+  - unless @estimate.description.nil? or @estimate.description.empty?
+    = @estimate.description
+  - else
+    This project has no description. Did you know that a kitten dies every time someone creates a project without a proper description? Now you do.
+- unless @estimate.tasks.empty?
+  %table
+    %thead
+  %td Task
+  %td Rate
+  %td
+  %td Hours
+  %td
+  %td Fee
+  %td
+  %tbody
+    - @estimate.tasks.each do |t|
+      %tr
+        %td= truncate(t.name, length: 18)
+        %td= t.rate
+        %td
+          %span x
+        %td= t.hours
+        %td
+          %span =
+        %td= unless t.rate.nil? or t.hours.nil? then t.rate * t.hours end
+        %td
+          = link_to content_tag(:i, nil, :class => "icon-edit"), edit_estimate_task_path(@estimate, t)
+          = link_to content_tag(:i, nil, :class => "icon-cancel"), estimate_task_path(@estimate, t), :method => :delete, class: "delete-icon"
+  %p.total
+    Total fee:
+    %span= @total
+- else
+  %p You should go on and create some tasks.
+%h2 Create new task
+= render partial: "/tasks/new_form"
+%p.project-icons
+  = link_to content_tag(:i, nil, class: "icon-edit"), edit_estimate_path, title: "Edit project title or description"
+  = link_to content_tag(:i, nil, class: "icon-trash"), @estimate, method: :delete, confirm: "Wait, really? This project is awesome. Sure you want to delete?", class: "delete-icon", title: "Delete this project"

@@ -1,0 +1,8 @@
+%section.main
+  %h1 New project
+  = form_for(@estimate) do |e|
+    = e.text_field :project, :placeholder => "Project name"
+    = e.text_area :description, :placeholder => "Description"
+    = collection_select(:default, :project_type_id, ProjectType.all, :id, :name, {:include_blank => 'Project type (optional)'})
+    = e.submit "Create project"
+  - end #form_for
