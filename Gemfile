@@ -24,6 +24,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'haml-rails'
 gem 'normalize-rails'
 
 group :assets do
@@ -33,7 +34,6 @@ group :assets do
 end
 
 group :development do
-  gem 'haml-rails'
   gem "binding_of_caller"
   gem "quiet_assets"
   # gem "better_errors"
