@@ -1,13 +1,12 @@
-.front
-  %h1.header Estimator
-  %a.btn{:href => new_estimate_path}
-    New project
-    %span Click to create a new estimation project
-  %a.btn{:href => settings_path}
-    Settings
-    %span Configure default fields and rates for new projects
-  %section.tags
-    - @estimates.each do |e|
-      %span.tag
-        = link_to e.project, e
-        = link_to content_tag(:i, nil, class: "icon-cancel"), e, :method => :delete, :class => "cross"
+%h1.header Estimator
+%a.btn{:href => new_estimate_path}
+  New project
+  %span Click to create a new estimation project
+%a.btn{:href => settings_path}
+  Settings
+  %span Configure default fields and rates for new projects
+%section.tags
+  - @estimates.each do |e|
+    %span.tag
+      = link_to e.project, e
+      = link_to content_tag(:i, nil, class: "icon-cancel"), e, :method => :delete, :class => "cross"

@@ -1,11 +1,13 @@
 %h1 Settings
 %p Lorem ipsum Est Excepteur voluptate labore nulla Duis in sunt do occaecat officia ullamco deserunt.
+
 %h2 Project types
 %p
   - @project_types.each do |p|
     %span.tag
       = link_to p.name, p
       = link_to content_tag(:i, nil, class: "icon-cancel"), p, :method => :delete, :class => "cross"
+
 = link_to new_project_type_path, class: "btn" do
   %i.icon-doc-new
   New project type

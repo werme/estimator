@@ -12,26 +12,20 @@
     = csrf_meta_tags
     = yield(:head)
 
-  %body{:class => "#{controller_name} #{action_name}"}
+  %body{:class => "#{controller_name}-#{action_name}"}
     - unless current_page? root_path or current_page? estimates_path
       %header
-        %nav.hidden-menu
-          .container
-            .nav
-              = link_to new_estimate_path do
-                %i.icon-doc-new
-                New project
-              = link_to settings_path do
-                %i.icon-cog-1
-                Settings
-        %nav.container
+        %nav.container.hidden-menu
+          = render partial: "/shared/hidden_menu"
+        %nav.container.top-bar
           = link_to image_tag("e_final.svg"), estimates_path, :class => "logo"
           .nav
             %a{:href => "#"} About
             %a.menu-trigger{:href => "#"}
               %i.icon-menu
     .container
-      = yield
+      %section.main
+        = yield
     %footer
       .container
         %p ♥ 2013 — Olle Werme

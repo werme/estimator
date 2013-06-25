@@ -3,24 +3,20 @@ Estimator::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-root 'estimates#index'
+  root 'estimates#index'
 
-resources :estimates do
-  resources :tasks, :except => [:index]
-end
+  resources :estimates do
+    resources :tasks, :except => [:index]
+  end
 
-resources :project_types do
-  resources :tasks, :except => [:index]
-end
+  resources :project_types do
+    resources :tasks, :except => [:index]
+  end
 
-match 'settings' => 'settings#index', :as => 'settings', :via => :get
-#match 'types/new' => 'project_types#new', :as => 'new_project_type', :via => :get
-#match 'project_types/:project_type_id/tasks' => 'tasks#create', :as => 'project_type_tasks', :via => :post
+  match 'settings' => 'settings#index', :as => 'settings', :via => :get
 
-#match 'project_types/:project_type_id/tasks/:id' => 'tasks#destroy', :as => 'project_type_task', :via => :delete
-#match 'project_types/:project_type_id/tasks/:id' => 'tasks#update', :via => :put
-
-# match 'project/:id/tasks/new' => 'tasks#new'
+  devise_for :users
+  resources :users
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -46,7 +42,7 @@ match 'settings' => 'settings#index', :as => 'settings', :via => :get
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
-  #     resource :seller
+  #     resource :sellerdevise
   #   end
 
   # Example resource route with more complex sub-resources:

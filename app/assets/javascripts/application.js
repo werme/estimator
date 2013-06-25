@@ -37,7 +37,7 @@ $(document).ready(function () {
         } else {
           event.stopPropagation();
           open = false;
-          el.className = el.className.replace(/\bmenu-open\b/,'');
+          el.className = el.className.replace(/\b menu-open\b/,'');
           return false;
         }
       }, false );

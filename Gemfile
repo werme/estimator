@@ -13,7 +13,7 @@ gem 'sqlite3'
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.0.1'
@@ -27,14 +27,29 @@ gem 'normalize-rails'
 
 group :assets do
   gem "coffee-rails"
-  # gem 'compass-rails', github: "milgner/compass-rails", branch: "rails4"
-  # gem "compass-rails",    git: "git://github.com/Compass/compass-rails.git", branch: "rails4"
   gem "sass-rails", '~> 4.0.0.rc2'
   gem "uglifier"
-  # gem "zurb-foundation"
 end
 
-gem 'haml-rails', :group => :development
+group :development do
+  gem 'haml-rails'
+  gem "binding_of_caller"
+  gem "quiet_assets"
+  # gem "better_errors"
+end
+
+group :test do
+  gem "database_cleaner"
+  gem "email_spec"
+  gem "launchy"
+  gem "capybara"
+  gem "cucumber-rails", :require => false
+end
+
+gem "rspec-rails", :group => [:development, :test]
+gem "factory_girl_rails", :group => [:development, :test]
+gem "devise", :git => 'git://github.com/plataformatec/devise.git'
+gem "figaro"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
