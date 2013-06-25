@@ -1,14 +1,18 @@
 !!!
 %html
   %head
-    %title Estimator
-    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %title= content_for?(:title) ? yield(:title) : "Estimator"
+    %meta{:content => content_for?(:description) ? yield(:description) : "Estimator", :name => "description"}
+    = stylesheet_link_tag    "application", media: "all"
+    = javascript_include_tag "application"
     %script{:src => "//use.typekit.net/jnj3tjq.js", :type => "text/javascript"}
     :javascript
       try{Typekit.load();}catch(e){}
     = csrf_meta_tags
-  %body
+    = yield(:head)
+
+  %body{:class => "#{controller_name} #{action_name}"}
     - unless current_page? root_path or current_page? estimates_path
       %header
         %nav.hidden-menu
