@@ -22,27 +22,39 @@
       - @estimate.tasks.each do |t|
         %tr
           %td= truncate(t.name, length: 18)
-          %td= t.rate
+          %td.rate= t.rate
           %td
             %span x
-          %td= t.hours
+          %td.hours= unless t.tasks.empty? then t.tasks.sum{|sub| if sub.hours then sub.hours else 0 end} else t.hours end
           %td
             %span =
-          %td= unless t.rate.nil? or t.hours.nil? then t.rate * t.hours end
+          %td.fee= unless t.tasks.empty? or t.rate.nil? then t.tasks.sum{|sub| if sub.hours then sub.hours else 0 end} * t.rate else unless t.rate.nil? or t.hours.nil? then t.rate * t.hours end end
           %td
+            = link_to content_tag(:i, nil, :class => "icon-flow-split"), new_child_task_path(t)
             = link_to content_tag(:i, nil, :class => "icon-edit"), edit_estimate_task_path(@estimate, t)
             = link_to content_tag(:i, nil, :class => "icon-cancel"), estimate_task_path(@estimate, t), :method => :delete, class: "delete-icon"
+        - unless t.tasks.empty?
+          - t.tasks.each do |sub|
+            %tr.sub-task
+              %td{:colspan => "2"}
+                = content_tag(:i, nil, :class => "icon-level-down")
+                = truncate(sub.name, length: 22)
+              %td
+              %td.hours= sub.hours
+              %td
+              %td.fee= unless sub.parent.rate.nil? or sub.hours.nil? then sub.parent.rate * sub.hours end
+              %td
+                = link_to content_tag(:i, nil, :class => "icon-edit"), edit_child_task_path(t, sub)
+                = link_to content_tag(:i, nil, :class => "icon-cancel"), estimate_task_path(@estimate, sub), :method => :delete, class: "delete-icon"
 
   %p.total
     Total fee:
-    %span= @total
+    %span TODO
   // TODO: Add total time
 - else
-  %p You should go on and create some tasks.
-
-%h2 Create new task
-= render partial: "/tasks/new_form"
+  %p This project type has no tasks. You should create some, tasks are awesome. Just press the leftest one of the three nifty icons below.
 
 %p.project-icons
+  = link_to content_tag(:i, nil, class: "icon-doc-new"), new_estimate_task_path(@estimate), title: "Create a new task for this project"
   = link_to content_tag(:i, nil, class: "icon-edit"), edit_estimate_path, title: "Edit project title or description"
   = link_to content_tag(:i, nil, class: "icon-trash"), @estimate, method: :delete, data: { confirm: "Wait, really? This project is awesome. Sure you want to delete?" }, class: "delete-icon", title: "Delete this project"

@@ -37,6 +37,7 @@ end
 group :development do
   gem "binding_of_caller"
   gem "quiet_assets"
+  gem 'thin'
   # gem "better_errors"
 end
 

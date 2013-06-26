@@ -1,5 +1,4 @@
-= form_for @task, :url => estimate_tasks_path(params[:estimate_id]) do |f|
+= form_for @task, :url => child_task_path(@parent, @task) do |f|
   = f.text_field :name, :placeholder => "Name for task"
-  = f.text_field :rate, :placeholder => "Rate per hour for task"
   = f.text_field :hours, :placeholder => "Estimated number of hours to complete task"
   = f.submit

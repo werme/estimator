@@ -1,1 +1,8 @@
-= render :partial => "form", :locals => { :task => @task, :project => @estimate }
+- if params[:estimate_id]
+  %h1 Create new task
+  = render partial: 'new_estimate_task_form'
+- elsif params[:project_type_id]
+  %h1 Create new default task
+  = render partial: 'new_project_type_task_form'
+- else
+  %p There is something special about this task. It's too cool for editing. Let's keep it as is.

@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :estimates
-  validates_uniqueness_of :email, :case_sensitive => false
+  has_many :estimates, dependent: :destroy
+  validates_uniqueness_of :email, case_sensitive: false
 end

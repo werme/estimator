@@ -1,4 +1,6 @@
-%h1= @project_type.name
+%h1
+  %span Project type:
+  = @project_type.name
 
 %p
   - unless @project_type.description.nil? or @project_type.description.empty?
@@ -23,11 +25,9 @@
             = link_to content_tag(:i, nil, class: "icon-edit"), edit_project_type_task_path(@project_type, t)
             = link_to content_tag(:i, nil, class: "icon-cancel"), project_type_task_path(@project_type, t), :method => :delete, class: "delete-icon"
 - else
-  %p This project type has no tasks as of yet. You should create some, tasks are awesome. Just use the form below.
-
-%h2 Create new default task
-= render partial: '/tasks/new_form'
+  %p This project type has no tasks. You should create some, tasks are awesome. Just press the leftest one of the three nifty icons below.
 
 %p.project-icons
+  = link_to content_tag(:i, nil, class: "icon-doc-new"), new_project_type_task_path(@project_type), title: "Create a new task for this project"
   = link_to content_tag(:i, nil, class: "icon-edit"), edit_project_type_path, title: "Edit project type title or description"
   = link_to content_tag(:i, nil, class: "icon-trash"), @project_type, method: :delete, data: { confirm: "Wait, really? This project type is awesome. Sure you want to delete?" }, class: "delete-icon", title: "Delete this project type"
