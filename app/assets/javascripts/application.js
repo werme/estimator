@@ -25,7 +25,7 @@ $(document).ready(function () {
 
     function init() {
 
-      var el      = document.querySelector( 'nav.hidden-menu' ),
+      var el      = document.querySelector( '.hidden-menu' ),
           trigger = document.querySelector( 'a.menu-trigger' ),
           open    = false;
 

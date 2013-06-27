@@ -1,0 +1,33 @@
+%h1 Estimator
+- if user_signed_in?
+  = link_to new_estimate_path, class: "wide-btn" do
+    %i.icon-doc-new
+    New project
+    %span Create a new estimation project for scratch, or use an existing template.
+  = link_to estimates_path, class: "wide-btn" do
+    %i.icon-menu
+    Browse projects
+    %span Browse and view all your projects.
+  /= link_to new_project_type_path, class: "wide-btn" do
+  /  New template
+  /  %span Create a new template with default tasks to use when starting new projects.
+  = link_to settings_path, class: "wide-btn" do
+    %i.icon-cog-1
+    App settings
+    %span Configure application preferences and manage your project templates.
+  = link_to user_path(current_user), class: "wide-btn" do
+    %i.icon-user-1
+    User profile
+    %span Change your username or password.
+  = link_to destroy_user_session_path, method: :delete, class: "wide-btn" do
+    %i.icon-logout
+    Logout
+- else
+  = link_to new_user_session_path, class: "wide-btn" do
+    %i.icon-login
+    Login
+    %span Login to view your private projects.
+  = link_to new_user_registration_path, class: "wide-btn" do
+    %i.icon-user-add
+    Sign up
+    %span Register an account to save projects, create templates and collaborate with friends.

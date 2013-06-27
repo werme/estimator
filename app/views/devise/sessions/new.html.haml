@@ -1,0 +1,10 @@
+%h1
+  %span User
+  Sign in
+= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  = devise_error_messages!
+  = f.email_field :email, placeholder: "Your email address",:autofocus => true
+  = f.password_field :password, placeholder: "Password"
+  = f.submit "Sign in"
+
+= render "devise/shared/links"

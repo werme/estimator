@@ -1,9 +1,9 @@
 Estimator::Application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  root 'estimates#index'
+  devise_for :users
+  resources :users
+
+  root to: 'pages#front'
 
   resources :estimates do
     resources :tasks, :except => [:index]
@@ -13,7 +13,8 @@ Estimator::Application.routes.draw do
     resources :tasks, :except => [:index]
   end
 
-  match 'settings' => 'settings#index', :as => 'settings', :via => :get
+  get 'settings' => 'pages#settings', as: :settings
+  get 'home' => 'pages#front', as: :front
 
   get   'parent/:id/new' =>                   'tasks#new_child_task',  :as => 'new_child_task'
   get   'parent/:parent_id/tasks/:id/edit' => 'tasks#edit_child_task', :as => 'edit_child_task'
@@ -22,8 +23,7 @@ Estimator::Application.routes.draw do
   put   'parent/:parent_id/tasks/:id' =>      'tasks#update'
   patch 'parent/:parent_id/tasks/:id' =>      'tasks#update'
 
-  devise_for :users
-  resources :users
+
 
 
   # Example of regular route:

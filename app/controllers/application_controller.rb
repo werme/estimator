@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
     true if Float(n) rescue false
   end
 
-
   protected
 
   def configure_permitted_parameters

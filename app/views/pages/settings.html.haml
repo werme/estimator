@@ -1,7 +1,7 @@
 %h1 Settings
 %p Lorem ipsum Est Excepteur voluptate labore nulla Duis in sunt do occaecat officia ullamco deserunt.
 
-%h2 Project types
+%h2 Project templates
 %p
   - @project_types.each do |p|
     %span.tag
@@ -10,4 +10,5 @@
 
 = link_to new_project_type_path, class: "btn" do
   %i.icon-doc-new
-  New project type
+  New template
+  %span Create a template for new projects with default tasks and settings to build upon.

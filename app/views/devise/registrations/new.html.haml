@@ -1,14 +1,12 @@
-%h2 Sign up
+%h1
+  %span Register
+  New account
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
   = devise_error_messages!
-  = f.label :name
-  = f.text_field :name
-  = f.label :email
-  = f.email_field :email
-  = f.label :password
-  = f.password_field :password
-  = f.label :password_confirmation
-  = f.password_field :password_confirmation
+  = f.text_field :name, placeholder: "Display name (optional)", autofocus: true
+  = f.email_field :email, placeholder: "Email address"
+  = f.password_field :password, placeholder: "Password"
+  = f.password_field :password_confirmation, placeholder: "Password again"
   = f.submit "Sign up"
 
 = render "devise/shared/links"

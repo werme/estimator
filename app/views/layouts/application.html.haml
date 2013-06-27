@@ -13,14 +13,14 @@
     = yield(:head)
 
   %body{:class => "#{controller_name}-#{action_name}"}
-    - unless current_page? root_path or current_page? estimates_path
+    - if user_signed_in? and !current_page? root_path
       %header
-        %nav.container.hidden-menu
+        %div.container.hidden-menu
           = render partial: "/shared/hidden_menu"
-        %nav.container.top-bar
-          = link_to image_tag("e_final.svg"), estimates_path, :class => "logo"
-          .nav
-            %a{:href => "#"} About
+        %div.container.top-bar
+          = link_to image_tag("logo_white.svg"), root_path, :class => "logo"
+          %nav
+            /%a{:href => "#"} About
             %a.menu-trigger{:href => "#"}
               %i.icon-menu
     .container

@@ -12,22 +12,20 @@
   %table
     %thead
       %td Task
-      %td Rate
+      %td.rate Rate
       %td
-      %td Hours
+      %td.hours Hours
       %td
-      %td Fee
+      %td.fee Fee
       %td
     %tbody
       - @estimate.tasks.each do |t|
         %tr
           %td= truncate(t.name, length: 18)
           %td.rate= t.rate
-          %td
-            %span x
+          %td.symbol x
           %td.hours= unless t.tasks.empty? then t.tasks.sum{|sub| if sub.hours then sub.hours else 0 end} else t.hours end
-          %td
-            %span =
+          %td.symbol =
           %td.fee= unless t.tasks.empty? or t.rate.nil? then t.tasks.sum{|sub| if sub.hours then sub.hours else 0 end} * t.rate else unless t.rate.nil? or t.hours.nil? then t.rate * t.hours end end
           %td
             = link_to content_tag(:i, nil, :class => "icon-flow-split"), new_child_task_path(t)
@@ -54,7 +52,7 @@
 - else
   %p This project type has no tasks. You should create some, tasks are awesome. Just press the leftest one of the three nifty icons below.
 
-%p.project-icons
+.project-icons
   = link_to content_tag(:i, nil, class: "icon-doc-new"), new_estimate_task_path(@estimate), title: "Create a new task for this project"
   = link_to content_tag(:i, nil, class: "icon-edit"), edit_estimate_path, title: "Edit project title or description"
   = link_to content_tag(:i, nil, class: "icon-trash"), @estimate, method: :delete, data: { confirm: "Wait, really? This project is awesome. Sure you want to delete?" }, class: "delete-icon", title: "Delete this project"
