@@ -1,6 +1,6 @@
 %h1 Projects
 
-- @estimates.each do |e|
+- current_user.estimates.each do |e|
   = link_to e, class: "wide-btn" do
     = e.project
     %span= truncate(e.description, length: 80)

@@ -6,5 +6,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :estimates, dependent: :destroy
+  has_many :project_types, dependent: :destroy
   validates_uniqueness_of :email, case_sensitive: false
 end

@@ -3,7 +3,7 @@
 
 %h2 Project templates
 %p
-  - @project_types.each do |p|
+  - current_user.project_types.each do |p|
     %span.tag
       = link_to p.name, p
       = link_to content_tag(:i, nil, class: "icon-cancel"), p, :method => :delete, :class => "cross"

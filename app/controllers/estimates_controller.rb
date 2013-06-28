@@ -1,4 +1,5 @@
 class EstimatesController < ApplicationController
+  load_and_authorize_resource
 
   def index
     @estimates = Estimate.all
@@ -16,6 +17,7 @@ class EstimatesController < ApplicationController
 
   def create
     estimate = Estimate.new(estimate_params)
+    estimate.user = current_user
 
     unless params[:default][:project_type_id].empty?
       project_type = ProjectType.find(params[:default][:project_type_id])

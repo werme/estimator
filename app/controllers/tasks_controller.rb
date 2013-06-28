@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  load_and_authorize_resource
+
   def show
     @task = Task.find(params[:id])
   end
@@ -9,7 +11,7 @@ class TasksController < ApplicationController
 
   def new_child_task
     @task = Task.new
-    @parent = Task.find params[:id]
+    @parent = Task.find params[:parent_id]
   end
 
   def edit

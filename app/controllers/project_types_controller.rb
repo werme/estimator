@@ -1,4 +1,6 @@
 class ProjectTypesController < ApplicationController
+  load_and_authorize_resource
+
   def show
     @project_type = ProjectType.find(params[:id])
     @task = Task.new
@@ -10,6 +12,7 @@ class ProjectTypesController < ApplicationController
 
   def create
     project_type = ProjectType.new(project_type_params)
+    project_type.user = current_user
 
     if project_type.save
       redirect_to project_type

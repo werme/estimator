@@ -16,7 +16,7 @@ Estimator::Application.routes.draw do
   get 'settings' => 'pages#settings', as: :settings
   get 'home' => 'pages#front', as: :front
 
-  get   'parent/:id/new' =>                   'tasks#new_child_task',  :as => 'new_child_task'
+  get   'parent/:parent_id/new' =>            'tasks#new_child_task',  :as => 'new_child_task'
   get   'parent/:parent_id/tasks/:id/edit' => 'tasks#edit_child_task', :as => 'edit_child_task'
   post  'parent/:parent_id/tasks' =>          'tasks#create',          :as => 'child_tasks'
   get   'parent/:parent_id/tasks/:id' =>      'tasks#show',            :as => "child_task"

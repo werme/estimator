@@ -53,6 +53,7 @@ gem "rspec-rails", :group => [:development, :test]
 gem "factory_girl_rails", :group => [:development, :test]
 gem "devise", :git => 'git://github.com/plataformatec/devise.git'
 gem "figaro"
+gem "cancan"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
