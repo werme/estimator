@@ -44,6 +44,6 @@ class ProjectTypesController < ApplicationController
   private
 
   def project_type_params
-    params.require(:project_type).permit(:name, :description, :default_rate)
+    params.require(:project_type).permit(:name, :description, :default_rate, :public)
   end
 end

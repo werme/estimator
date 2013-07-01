@@ -25,9 +25,13 @@
             = link_to content_tag(:i, nil, class: "icon-edit"), edit_project_type_task_path(@project_type, t)
             = link_to content_tag(:i, nil, class: "icon-cancel"), project_type_task_path(@project_type, t), :method => :delete, class: "delete-icon"
 - else
-  %p This project type has no tasks. You should create some, tasks are awesome. Just press the leftest one of the three nifty icons below.
+  %p This project type has no tasks. You should create some, tasks are awesome. Just press the leftest one of the nifty icons below.
 
 %p.project-icons
   = link_to content_tag(:i, nil, class: "icon-doc-new"), new_project_type_task_path(@project_type), title: "Create a new task for this project"
   = link_to content_tag(:i, nil, class: "icon-edit"), edit_project_type_path, title: "Edit project type title or description"
+  - unless @project_type.public == true
+    = link_to content_tag(:i, nil, class: "icon-share"), project_type_path(@project_type, project_type: { public: true }), method: :patch, data: { confirm: "Are you sure you want to make this template public?" } , title: "Make this template public"
+  - else
+    = link_to content_tag(:i, nil, class: "icon-share"), project_type_path(@project_type, project_type: { public: false }), method: :patch, data: { confirm: "Are you sure you want to make this template private?" } , class: "delete-icon", title: "Make this template private"
   = link_to content_tag(:i, nil, class: "icon-trash"), @project_type, method: :delete, data: { confirm: "Wait, really? This project type is awesome. Sure you want to delete?" }, class: "delete-icon", title: "Delete this project type"

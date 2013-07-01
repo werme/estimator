@@ -1,7 +1,5 @@
-%section.main
-  %h1 Edit project type
-  = form_for(@project_type) do |p|
-    = p.text_field :name, :placeholder => "Project type name"
-    = p.text_area :description, :placeholder => "Description"
-    = p.submit
-  - end #form_for
+%h1 Edit project type
+= form_for(@project_type) do |p|
+  = p.text_field :name, :placeholder => "Project type name"
+  = p.text_area :description, :placeholder => "Description"
+  = p.submit

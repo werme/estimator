@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130628015426) do
+ActiveRecord::Schema.define(version: 20130628175245) do
 
   create_table "estimates", force: true do |t|
     t.datetime "created_at"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20130628015426) do
     t.string   "description"
     t.integer  "default_rate"
     t.integer  "user_id"
+    t.boolean  "public"
   end
 
   add_index "project_types", ["user_id"], name: "index_project_types_on_user_id"

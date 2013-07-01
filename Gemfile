@@ -24,7 +24,6 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem "heroku"
 gem 'haml-rails'
 gem 'normalize-rails'
 

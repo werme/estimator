@@ -348,6 +348,12 @@ body.pages-front { border-top: 15px solid $dark-blue; }
 .pages-front section.main, .estimates-index section.main { padding: 0 1em; text-align: center; }
 .registration-new section.main, .sessions-new section.main { padding: 2em 0 0; }
 
+
+#disqus_thread {
+  font-family: 'proxima-nova' !important;
+  color: red !important;
+}
+
 @media screen and (min-width:560px) {
 
   body { font: 130%/1.6 'proxima-nova'; }
