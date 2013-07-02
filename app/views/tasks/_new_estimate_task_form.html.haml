@@ -2,4 +2,5 @@
   = f.text_field :name, :placeholder => "Name for task"
   = f.text_field :rate, :placeholder => "Rate per hour for task"
   = f.text_field :hours, :placeholder => "Estimated number of hours to complete task"
+  = f.hidden_field :estimate_id, value: params[:estimate_id]
   = f.submit

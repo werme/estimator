@@ -16,6 +16,7 @@ class Ability
     end
 
     can :manage, [Estimate, ProjectType], user_id: user.id
+    can :manage, [Estimate], user.accessed_estimates.include?(:id)
 
     can :manage, Task do |t|
       if params.try(:[], :estimate_id)

@@ -6,6 +6,5 @@ class ProjectType < ActiveRecord::Base
 
   validates :name, presence: true
   validates_associated :user
-  validates_associated :user
   validates :description, length: { maximum: 1000 }
 end

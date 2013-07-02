@@ -388,9 +388,11 @@ img.avatar { border: 5px solid white; }
 
 a.delete-icon:hover { color: #F44; }
 
-#error_explanation {
+#error_explanation, .alert, .error {
+  text-align: left;
   font-size: 0.8em;
   padding: 0.6em;
+  margin-top: 1em;
   background: $red;
   color: white;
   border: 5px solid $dark-red;
@@ -404,6 +406,16 @@ a.delete-icon:hover { color: #F44; }
     margin: 0;
     padding-left: 1.6em;
   }
+}
+
+.notice {
+  text-align: left;
+  font-size: 0.8em;
+  padding: 0.6em;
+  margin-top: 1em;
+  background: #3D8;
+  color: white;
+  border: 5px solid #2C7;
 }
 
 /**************/

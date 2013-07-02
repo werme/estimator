@@ -3,7 +3,6 @@ class Note < ActiveRecord::Base
 
   auto_strip_attributes :text, :nullify => false, :squish => true
 
-  validates :text, presence: true
+  validates :text, presence: true, length: { in: 2..400 }
   validates_associated :estimate
-  validates :text, length: { in: 2..400 }
 end

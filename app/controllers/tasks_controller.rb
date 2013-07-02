@@ -29,6 +29,7 @@ class TasksController < ApplicationController
     if task.update_attributes(task_params)
       redirect
     else
+      flash[:error] = task.errors.full_messages.to_sentence
       redirect
     end
   end
@@ -36,19 +37,10 @@ class TasksController < ApplicationController
   def create
     task = Task.new(task_params)
 
-    if params[:estimate_id]
-      task.estimate = Estimate.find params[:estimate_id]
-    elsif params[:project_type_id]
-      task.project_type = ProjectType.find params[:project_type_id]
-    end
-
-    if params[:parent_id]
-      task.parent = Task.find params[:parent_id]
-    end
-
     if task.save
       redirect
     else
+      flash[:error] = task.errors.full_messages.to_sentence
       redirect_to :back
     end
   end
@@ -69,11 +61,12 @@ class TasksController < ApplicationController
     elsif params[:project_type_id]
       redirect_to ProjectType.find params[:project_type_id]
     else
+      flash[:error] = "Something wierd happened, macaroni!"
       redirect_to :root
     end
   end
 
   def task_params
-    params.require(:task).permit(:name, :rate, :hours)
+    params.require(:task).permit(:name, :rate, :hours, :parent_id, :estimate_id, :project_type_id)
   end
 end

@@ -18,7 +18,6 @@ class EstimatesController < ApplicationController
 
   def create
     estimate = Estimate.new(estimate_params)
-    estimate.user = current_user
 
     unless params[:default][:project_type_id].empty?
       project_type = ProjectType.find(params[:default][:project_type_id])
@@ -29,6 +28,7 @@ class EstimatesController < ApplicationController
     if estimate.save
       redirect_to estimate
     else
+      flash[:error] = estimate.errors.full_messages.to_sentence
       redirect_to estimates_path
     end
   end
@@ -39,10 +39,12 @@ class EstimatesController < ApplicationController
 
   def update
     estimate = Estimate.find params[:id]
+    estimate.editors << User.find_by_email(params[:editor])
 
     if estimate.update_attributes(estimate_params)
       redirect_to estimate
     else
+      flash[:error] = estimate.errors.full_messages.to_sentence
       redirect_to estimate
     end
   end
@@ -56,6 +58,6 @@ class EstimatesController < ApplicationController
   private
 
   def estimate_params
-    params.require(:estimate).permit(:project, :description)
+    params.require(:estimate).permit(:project, :description, :user_id)#, editors_attributes: [:user])
   end
 end

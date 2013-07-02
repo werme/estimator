@@ -12,11 +12,11 @@ class ProjectTypesController < ApplicationController
 
   def create
     project_type = ProjectType.new(project_type_params)
-    project_type.user = current_user
 
     if project_type.save
       redirect_to project_type
     else
+      flash[:error] = project_type.errors.full_messages.to_sentence
       redirect_to new_project_type_path
     end
   end
@@ -31,6 +31,7 @@ class ProjectTypesController < ApplicationController
     if project_type.update_attributes(project_type_params)
       redirect_to project_type
     else
+      flash[:error] = project_type.errors.full_messages.to_sentence
       redirect_to project_type
     end
   end
@@ -44,6 +45,6 @@ class ProjectTypesController < ApplicationController
   private
 
   def project_type_params
-    params.require(:project_type).permit(:name, :description, :default_rate, :public)
+    params.require(:project_type).permit(:name, :description, :default_rate, :public, :user_id)
   end
 end

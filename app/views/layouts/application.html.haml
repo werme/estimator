@@ -25,6 +25,9 @@
               %i.icon-menu
     .container
       %section.main
+        - unless flash.empty?
+          - flash.each do |name, msg|
+            = content_tag(:div, msg, class: name)
         = yield
     %footer
       .container

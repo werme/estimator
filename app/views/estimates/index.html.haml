@@ -1,7 +1,11 @@
 %h1 Projects
 
-- unless current_user.estimates.empty?
+- unless current_user.estimates.empty? and current_user.accessed_estimates.empty?
   - current_user.estimates.each do |e|
+    = link_to e, class: "wide-btn" do
+      = e.project
+      %span= truncate(e.description, length: 80)
+  - current_user.accessed_estimates.each do |e|
     = link_to e, class: "wide-btn" do
       = e.project
       %span= truncate(e.description, length: 80)

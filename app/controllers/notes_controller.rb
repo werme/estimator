@@ -10,6 +10,7 @@ class NotesController < ApplicationController
     if note.save
       redirect_to Estimate.find note.estimate
     else
+      flash[:error] = note.errors.full_messages.to_sentence
       redirect_to :back
     end
   end
@@ -20,6 +21,7 @@ class NotesController < ApplicationController
     if note.update_attributes(note_params)
       redirect_to note.estimate
     else
+      flash[:error] = note.errors.full_messages.to_sentence
       redirect_to note.estimate
     end
   end
