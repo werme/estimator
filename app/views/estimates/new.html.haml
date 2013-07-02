@@ -3,5 +3,5 @@
   = e.text_field :project, :placeholder => "Project name"
   = e.text_area :description, :placeholder => "Description"
   = collection_select(:default, :project_type_id, ProjectType.all, :id, :name, {:include_blank => 'Project type (optional)'})
-  = e.hidden_field :user_id, current_user.id
+  = e.hidden_field :user_id, value: current_user.id
   = e.submit "Create project"
