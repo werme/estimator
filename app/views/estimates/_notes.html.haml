@@ -1,0 +1,18 @@
+%section.notes
+  %em= pluralize(@estimate.notes.count, 'Note')
+  - unless @estimate.notes.empty?
+    %ul
+      - @estimate.notes.each do |n|
+        %li{class: ("done" if n.done?)}
+          = n.text
+          %span
+            - if n.done?
+              = link_to content_tag(:i, nil, class: "icon-ok-1"), estimate_note_path(@estimate, n, note: { done: false }), method: :patch, title: "Nolonger mark this note as done", class: "delete-icon"
+            - else
+              = link_to content_tag(:i, nil, class: "icon-ok-1"), estimate_note_path(@estimate, n, note: { done: true }), method: :patch, title: "Mark this note as done"
+            = link_to content_tag(:i, nil, :class => "icon-cancel"), estimate_note_path(@estimate, n), :method => :delete, class: "delete-icon"
+
+  = form_for @note, url: estimate_notes_path(@estimate) do |n|
+    = n.text_field :text, placeholder: "Your note here..."
+    = n.hidden_field :estimate_id, value: @estimate.id
+    = n.submit

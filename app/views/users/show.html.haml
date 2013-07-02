@@ -1,6 +1,9 @@
 %h1
   %span User:
-  - if @user.name
-    = @user.name
-  - else
-    = @user.email
+  = @user.name || @user.email
+
+- unless @templates.empty?
+  %h2 Public templates
+  - @templates.each do |t|
+    %span.tag
+      = link_to t.name, t

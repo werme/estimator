@@ -7,6 +7,7 @@ Estimator::Application.routes.draw do
 
   resources :estimates do
     resources :tasks, :except => [:index]
+    resources :notes, :except => [:index, :show, :edit]
   end
 
   resources :project_types do

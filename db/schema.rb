@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130628175245) do
+ActiveRecord::Schema.define(version: 20130702010003) do
 
   create_table "estimates", force: true do |t|
     t.datetime "created_at"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20130628175245) do
   end
 
   add_index "estimates", ["user_id"], name: "index_estimates_on_user_id"
+
+  create_table "notes", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "text"
+    t.integer  "estimate_id"
+    t.boolean  "done"
+  end
+
+  add_index "notes", ["estimate_id"], name: "index_notes_on_estimate_id"
 
   create_table "project_types", force: true do |t|
     t.string   "name"

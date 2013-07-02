@@ -72,6 +72,8 @@ p { margin: 0 0 1.6em; }
   font-size: 0.7em;
 }
 
+.right { text-align: right; }
+
 .container {
   width: 100%;
   margin: 0 auto;
@@ -295,7 +297,7 @@ table {
 
   a {
     display: inline-block;
-    padding: 0.2em 0 0.2em 0.6em;
+    padding: 0.2em 0.4em;
     color: $orange;
     border: 0;
 
@@ -305,6 +307,64 @@ table {
       &:hover { color: red; }
     }
   }
+}
+
+.notes {
+  font: 0.8em/1.5 'source-code-pro';
+  font-size: 0.8em;
+  color: #333;
+  margin-bottom: 1em;
+
+  em {
+    margin: 0;
+    padding: 0.4em;
+    display: table-cell;
+    font-size: 0.8em;
+    color: $light-blue;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    background: $yellow;
+    border-top: 3px solid $light-blue;
+
+    li {
+      display: block;
+      position: relative;
+      padding: 0.4em 3.8em 0.4em 0.4em;
+      border-top:1px dashed #edb;
+      &:first-child { border: 0; }
+      &.done { color: #ca8; text-decoration: line-through; }
+
+      span {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0.4em;
+
+        a {
+          color: $blue;
+          &:hover { color: $light-blue; }
+          &.delete-icon { &:hover { color: red; } }
+        }
+      }
+    }
+  }
+
+  input {
+    display: inline-block;
+    margin: 0;
+    padding: 0.4em;
+    border: 0;
+    float:left;
+  }
+  input[type=text] { width: 70%; }
+  input[type=submit] { width: 30%; }
 }
 
 .total {
@@ -346,13 +406,9 @@ body.pages-front { border-top: 15px solid $dark-blue; }
 }
 
 .pages-front section.main, .estimates-index section.main { padding: 0 1em; text-align: center; }
+.estimates-index section.main h1 { margin-bottom: 0.5em; }
 .registration-new section.main, .sessions-new section.main { padding: 2em 0 0; }
 
-
-#disqus_thread {
-  font-family: 'proxima-nova' !important;
-  color: red !important;
-}
 
 @media screen and (min-width:560px) {
 
