@@ -1,6 +1,12 @@
 %h1 Projects
 
-- current_user.estimates.each do |e|
-  = link_to e, class: "wide-btn" do
-    = e.project
-    %span= truncate(e.description, length: 80)
+- unless current_user.estimates.empty?
+  - current_user.estimates.each do |e|
+    = link_to e, class: "wide-btn" do
+      = e.project
+      %span= truncate(e.description, length: 80)
+- else
+  %p You haven't created any projects yet.
+  = link_to new_estimate_path, class: "btn" do
+    %i.icon-doc-new
+    Create a new project

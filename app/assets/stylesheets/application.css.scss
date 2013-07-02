@@ -11,6 +11,7 @@ $hover-blue: #51C9FF;
 $header-blue: #10B7F0;
 
 $red: #e65;
+$dark-red: #d54;
 $dark-orange: #B40;
 $orange: #E73;
 $light-orange: #FF9550;
@@ -235,7 +236,7 @@ textarea:focus::-webkit-input-placeholder {
 }
 
 .inline {
-  input, textarea {
+  &.btn, input, textarea {
     display: inline-block;
     width: auto;
   }
@@ -383,7 +384,27 @@ table {
   font-size: 2em;
 }
 
+img.avatar { border: 5px solid white; }
+
 a.delete-icon:hover { color: #F44; }
+
+#error_explanation {
+  font-size: 0.8em;
+  padding: 0.6em;
+  background: $red;
+  color: white;
+  border: 5px solid $dark-red;
+  h2 {
+    margin: 0;
+    font-size: 1em;
+    font-family: 'proxima-nova';
+  }
+  ul {
+    list-style: circle;
+    margin: 0;
+    padding-left: 1.6em;
+  }
+}
 
 /**************/
 /* FRONT PAGE */

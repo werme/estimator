@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130702010003) do
+ActiveRecord::Schema.define(version: 20130702052601) do
 
   create_table "estimates", force: true do |t|
     t.datetime "created_at"
@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(version: 20130702010003) do
   end
 
   add_index "estimates", ["user_id"], name: "index_estimates_on_user_id"
+
+  create_table "estimates_users", force: true do |t|
+    t.integer "estimate_id"
+    t.integer "user_id"
+  end
 
   create_table "notes", force: true do |t|
     t.datetime "created_at"

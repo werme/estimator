@@ -38,6 +38,8 @@ GEM
     addressable (2.3.4)
     arel (4.0.0)
     atomic (1.1.9)
+    auto_strip_attributes (1.1)
+      activerecord (>= 3.0)
     bcrypt-ruby (3.0.1)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -190,6 +192,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  auto_strip_attributes (~> 1.0)
   binding_of_caller
   cancan
   capybara

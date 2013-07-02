@@ -54,6 +54,8 @@ gem "devise", :git => 'git://github.com/plataformatec/devise.git'
 gem "figaro"
 gem "cancan"
 
+gem "auto_strip_attributes", "~> 1.0"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
