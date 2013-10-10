@@ -1,0 +1,4 @@
+%h1 Give access to user
+= form_tag(estimate_update_users_path(@estimate), method: :patch) do
+  = text_field_tag :editor, nil, placeholder: "Give access to user (email)"
+  = submit_tag

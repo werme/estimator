@@ -39,7 +39,6 @@ class EstimatesController < ApplicationController
 
   def update
     estimate = Estimate.find params[:id]
-    estimate.editors << User.find_by_email(params[:editor])
 
     if estimate.update_attributes(estimate_params)
       redirect_to estimate
@@ -52,6 +51,34 @@ class EstimatesController < ApplicationController
   def destroy
     estimate = Estimate.find params[:id]
     estimate.destroy
+    redirect_to estimate
+  end
+
+  def add_user
+    @estimate = Estimate.find(params[:estimate_id])
+  end
+
+  def update_users
+    # TODO
+    estimate = Estimate.find params[:estimate_id]
+
+    unless params[:editor].empty?
+      if User.find_by_email(params[:editor])
+        user = User.find_by_email(params[:editor])
+        if estimate.user == user
+          flash[:error] = "#{user.name} is the author of this project"
+        elsif estimate.editors.include? user
+          flash[:notice] = "#{user.name} was removed from this project"
+          estimate.editors.delete user
+        else
+          estimate.editors << user
+          flash[:notice] = "Gave access to user #{user.name}"
+        end
+      else
+        flash[:error] = "No such user"
+      end
+    end
+
     redirect_to estimate
   end
 

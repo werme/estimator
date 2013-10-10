@@ -1,14 +1,15 @@
 %h1
   %span User:
   = @user.name || @user.email
-%p= image_tag avatar_url(current_user), class: "avatar"
+/%p= image_tag avatar_url(current_user), class: "avatar"
+
+%p A top notch user to say the least.
 
 - unless @templates.empty?
   %h2 Public templates
   - @templates.each do |t|
-    %span.tag
-      = link_to t.name, t
-
-%p A top notch user to say the least.
+    %p
+      %span.tag
+        = link_to t.name, t
 
 %p= link_to "Edit profile", edit_user_registration_path, class: "btn inline"

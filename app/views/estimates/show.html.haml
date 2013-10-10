@@ -26,7 +26,12 @@
           %td.symbol x
           %td.hours= t.hours
           %td.symbol =
-          %td.fee= unless t.tasks.empty? or t.rate.nil? then t.tasks.sum{|sub| if sub.hours then sub.hours else 0 end} * t.rate else unless t.rate.nil? or t.hours.nil? then t.rate * t.hours end end
+          %td.fee
+            - unless t.tasks.empty? or t.rate.nil?
+              = t.tasks.map(&:hours).inject(0, :+) * t.rate
+            - else
+              - unless t.rate.nil? or t.hours.nil?
+                = t.rate * t.hours
           %td
             = link_to content_tag(:i, nil, :class => "icon-flow-split"), new_child_task_path(t)
             = link_to content_tag(:i, nil, :class => "icon-edit"), edit_estimate_task_path(@estimate, t)
@@ -55,6 +60,20 @@
 .project-icons
   = link_to content_tag(:i, nil, class: "icon-doc-new"), new_estimate_task_path(@estimate), title: "Create a new task for this project"
   = link_to content_tag(:i, nil, class: "icon-edit"), edit_estimate_path, title: "Edit project title or description"
-  = link_to content_tag(:i, nil, class: "icon-trash"), @estimate, method: :delete, data: { confirm: "Wait, really? This project is awesome. Sure you want to delete?" }, class: "delete-icon", title: "Delete this project"
+  = link_to content_tag(:i, nil, class: "icon-trash"), @estimate, method: :delete, data: { confirm: "Wait, really? This project is awesome. Are you sure that you want it deleted?" }, class: "delete-icon", title: "Delete this project"
 
 = render partial: "notes"
+
+%br/
+.editors
+  %em Users with access to this project:
+  %p
+    %span.tag
+      = link_to @estimate.user.name, @estimate.user
+    - @estimate.editors.each do |u|
+      %span.tag
+        = link_to u.name, u
+        - if current_user == @estimate.user
+          = link_to content_tag(:i, nil, class: "icon-cancel"), estimate_update_users_path(@estimate, editor: u.email, estimate: { project: @estimate.project } ), method: :patch, data: { confirm: "Are you sure you want to remove access for this user?" } , class: "delete-icon", title: "Make this template private"
+    %span.tag
+      = link_to content_tag(:i, nil, class: "icon-user-add add-user"), estimate_add_user_path(@estimate), class: "add-user"

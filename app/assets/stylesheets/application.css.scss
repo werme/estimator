@@ -25,7 +25,7 @@ $yellow-light-tint: #fff9f3;
 }
 
 body {
-  font: 110%/1.6 'proxima-nova';//'freight-sans-pro';
+  font: 110%/1.6 'proxima-nova', 'Helvetica Neue';//'freight-sans-pro';
   margin: 0 auto;
   padding: 0 0 2em;
   color: white;
@@ -33,7 +33,7 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: 'brandon-grotesque';
+  font-family: 'brandon-grotesque', 'Helvetica Neue';
   font-weight: 400;
   color: white;
 }
@@ -48,7 +48,7 @@ h1 {
 
   span {
     display: block;
-    font-family: 'proxima-nova';
+    font-family: 'proxima-nova', 'Helvetica Neue';
     font-size: 0.4em;
     font-weight: bold;
     line-height: 1.6em;
@@ -245,7 +245,7 @@ textarea:focus::-webkit-input-placeholder {
 
 table {
   margin: 2em 0 1em;
-  font: 0.8em/1.5 'source-code-pro';
+  font: 0.8em/1.5 'source-code-pro', monaco;
   width: 100%;
   color: #333;
 
@@ -294,25 +294,26 @@ table {
   margin-bottom: 0.3em;
   background: $yellow;
   transition: all 0.1s;
+  padding: 0 0.4em;
   &:hover { background: $yellow-light-tint; }
 
   a {
     display: inline-block;
-    padding: 0.2em 0.4em;
     color: $orange;
     border: 0;
 
     &:hover { color: $dark-orange; }
     &.cross {
-      padding: 0.2em 0.2em 0.2em 0;
+      padding: 0.2em 0;
       &:hover { color: red; }
     }
   }
+
+  i { position: relative; top: 1px; }
 }
 
 .notes {
-  font: 0.8em/1.5 'source-code-pro';
-  font-size: 0.8em;
+  font: 0.8em/1.5 'source-code-pro', monaco;
   color: #333;
   margin-bottom: 1em;
 
@@ -357,6 +358,7 @@ table {
     }
   }
 
+
   input {
     display: inline-block;
     margin: 0;
@@ -368,14 +370,22 @@ table {
   input[type=submit] { width: 30%; }
 }
 
+.editors {
+  font: 0.8em/1.8 'source-code-pro', monaco;
+  color: $light-blue;
+
+  em { padding: 0.4em; font-size: 0.8em; font-style: normal; text-transform: uppercase; line-height: 2.4em; }
+  a { font-family: 'proxima-nova', 'Helvetica Neue'; }
+}
+
 .total {
   margin: 1em 0 2em;
   display: block;
-  font-family: 'source-code-pro';
+  font-family: 'source-code-pro', monaco;
   text-align: right;
   text-transform: uppercase;
 
-  span { color: #EE8943; }
+  span { color: $lighter-orange; } //#EE8943; }
 }
 
 .project-icons {
@@ -427,7 +437,7 @@ body.pages-front { border-top: 15px solid $dark-blue; }
 .pages-front {
   h1 {
     margin: 0.6em auto 0.2em;
-    font-family: "brandon-grotesque";
+    font-family: "brandon-grotesque", 'Helvetica Neue';
     font-size: 1.8em;
     font-weight: bold;
     color: white;//#00BEFF;//#FFD245;
@@ -445,7 +455,7 @@ body.pages-front { border-top: 15px solid $dark-blue; }
 
 @media screen and (min-width:560px) {
 
-  body { font: 130%/1.6 'proxima-nova'; }
+  body { font: 130%/1.6 'proxima-nova', 'Helvetica Neue'; }
   .container { width: 560px; }
   .pages-front .container, .estimates-index .container, [class*='registrations-'] .container, [class*='sessions-'] .container { width: 440px; }
 

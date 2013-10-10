@@ -8,6 +8,8 @@ Estimator::Application.routes.draw do
   resources :estimates do
     resources :tasks, :except => [:index]
     resources :notes, :except => [:index, :show, :edit]
+    get       'add_user'      => 'estimates#add_user',     :as => 'add_user'
+    patch     'update_users'  => 'estimates#update_users', :as => 'update_users'
   end
 
   resources :project_types do
@@ -23,7 +25,6 @@ Estimator::Application.routes.draw do
   get   'parent/:parent_id/tasks/:id' =>      'tasks#show',            :as => "child_task"
   put   'parent/:parent_id/tasks/:id' =>      'tasks#update'
   patch 'parent/:parent_id/tasks/:id' =>      'tasks#update'
-
 
 
 
