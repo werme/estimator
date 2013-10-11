@@ -12,5 +12,5 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :accessed_estimates, class_name: "Estimate"
 
   validates_uniqueness_of :email, case_sensitive: false
-  validates :name, length: { in: 2..60 }
+  validates :name, length: { in: 2..30 }
 end
