@@ -3,18 +3,15 @@ require 'spec_helper'
 describe User do
 
   let(:user) do
-    FactoryGirl.build(:user,
+    FactoryGirl.build :user,
       name: "Example User", 
       email: "user@example.com", 
       password: "mypassword"
-    )
   end
   
   subject { user }
 
-  it { should respond_to(:name) }
-  it { should respond_to(:email) }
-
+  it { should respond_to :name, :email, :reset_password_token, :created_at }
   it { should be_valid }
 
   context "when name is not present" do
