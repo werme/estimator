@@ -14,7 +14,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '2.13.1'
   gem 'guard-rspec', '2.5.0'
-  gem "factory_girl_rails"
+  gem 'factory_girl_rails', '~> 4.0'
 end
 
 gem 'pg', :group => [:deployment, :test]
