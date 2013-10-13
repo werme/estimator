@@ -13,7 +13,8 @@ gem 'rails', '~> 4.0.0' # github: 'rails/rails'
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '2.13.1'
-  gem "factory_girl_rails"
+  gem 'guard-rspec', '2.5.0'
+  gem 'factory_girl_rails', '~> 4.0'
 end
 
 gem 'pg', :group => [:deployment, :test]
