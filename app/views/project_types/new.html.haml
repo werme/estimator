@@ -2,6 +2,6 @@
 = form_for(@project_type) do |p|
   = p.text_field :name, :placeholder => "Project type name"
   = p.text_field :description, :placeholder => "Project type description"
-  = p.hidden_field :user_id, current_user.id
+  /= p.hidden_field :user_id, current_user.id
   = p.submit "Create project type"
 - end #form_for
