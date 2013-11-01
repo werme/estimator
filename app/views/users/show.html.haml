@@ -1,7 +1,7 @@
 %h1
   %span User:
   = @user.name || @user.email
-/%p= image_tag avatar_url(current_user), class: "avatar"
+= image_tag avatar_url(current_user), class: "avatar"
 
 %p A top notch user to say the least.
 
