@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20130702052601) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "estimates", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 20130702052601) do
     t.integer  "user_id"
   end
 
-  add_index "estimates", ["user_id"], name: "index_estimates_on_user_id"
+  add_index "estimates", ["user_id"], name: "index_estimates_on_user_id", using: :btree
 
   create_table "estimates_users", force: true do |t|
     t.integer "estimate_id"
@@ -37,7 +40,7 @@ ActiveRecord::Schema.define(version: 20130702052601) do
     t.boolean  "done"
   end
 
-  add_index "notes", ["estimate_id"], name: "index_notes_on_estimate_id"
+  add_index "notes", ["estimate_id"], name: "index_notes_on_estimate_id", using: :btree
 
   create_table "project_types", force: true do |t|
     t.string   "name"
@@ -50,12 +53,12 @@ ActiveRecord::Schema.define(version: 20130702052601) do
     t.boolean  "public"
   end
 
-  add_index "project_types", ["user_id"], name: "index_project_types_on_user_id"
+  add_index "project_types", ["user_id"], name: "index_project_types_on_user_id", using: :btree
 
   create_table "tasks", force: true do |t|
     t.string   "name"
-    t.integer  "rate",                      default: 0
-    t.integer  "hours",           limit: 5, default: 0
+    t.integer  "rate",            default: 0
+    t.integer  "hours",           default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "estimate_id"
@@ -63,7 +66,7 @@ ActiveRecord::Schema.define(version: 20130702052601) do
     t.integer  "parent_id"
   end
 
-  add_index "tasks", ["parent_id"], name: "index_tasks_on_parent_id"
+  add_index "tasks", ["parent_id"], name: "index_tasks_on_parent_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
