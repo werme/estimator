@@ -39,19 +39,17 @@ h1, h2, h3 {
 }
 
 h1 {
-  font-size: 1.4em;
   margin: 1em 0;
-  line-height: 1em;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font: 1.4em/1em 'proxima-nova', 'Helvetica Neue';
   font-weight: 500;
+  letter-spacing: 0.05em;
 
   span {
     display: block;
-    font-family: 'proxima-nova', 'Helvetica Neue';
-    font-size: 0.4em;
+    font-size: 0.45em;
     font-weight: bold;
-    line-height: 1.6em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: $darker-blue;
   }
 }
