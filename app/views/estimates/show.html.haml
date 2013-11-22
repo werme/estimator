@@ -51,6 +51,9 @@
                 = link_to content_tag(:i, nil, class: "icon-cancel"), estimate_task_path(@estimate, sub), method: :delete, class: "delete-icon", title: "Delete this task"
 
   %p.total
+    Hours:
+    %span= @hours
+    |
     Total fee:
     %span= @total
 

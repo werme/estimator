@@ -10,6 +10,7 @@ class EstimatesController < ApplicationController
     @note = Note.new
     @estimate.tasks.each { |t| unless t.tasks.empty? then t.hours = t.tasks.map(&:hours).inject(0, :+); t.save end }
     @total = @estimate.tasks.map { |t| t.hours * t.rate }.sum
+    @hours = @estimate.tasks.map { |t| t.hours }.sum
   end
 
   def new
@@ -85,6 +86,6 @@ class EstimatesController < ApplicationController
   private
 
   def estimate_params
-    params.require(:estimate).permit(:project, :description, :user_id)#, editors_attributes: [:user])
+    params.require(:estimate).permit(:project, :description, :user_id) #, editors_attributes: [:user])
   end
 end
