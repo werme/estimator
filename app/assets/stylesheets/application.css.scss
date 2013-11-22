@@ -3,12 +3,10 @@
 
 $darker-blue: #005790; //#0077B0;
 $dark-blue: #294C6D; //#0087C0;
-$blue: #328EC9; //#0087C0; //#00A7E0;
-$light-blue: #72D0FF;
+$blue: #207DB1; //#0087C0; //#00A7E0;
+$light-blue: #45ABEC;
 $lighter-blue: #BEF;
-$button-blue: #207DB1;
-$hover-blue: darken($button-blue, 5%);
-$header-blue: #10B7F0;
+$hover-blue: darken($blue, 5%);
 
 $red: #e65;
 $dark-red: #d54;
@@ -94,8 +92,7 @@ p { margin: 0 0 1.6em; }
 }
 
 header {
-  //background: $dark-blue;//$orange;//#f5f5f5;
-  border-bottom: 3px dashed lighten($dark-blue, 5%);
+  background: $blue; //lighten($dark-blue, 5%);//$dark-blue;//$orange;//#f5f5f5;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   line-height: 42px;
@@ -159,7 +156,7 @@ footer {
 .btn, input[type="submit"] {
   display: block;
   padding: 0.6em 1em;
-  background: $button-blue;
+  background: $blue;
   color: #fff;
   border: 0;
   transition: all 0.2s;
@@ -233,7 +230,7 @@ textarea:active,
 textarea:focus,
 textarea:hover::-webkit-input-placeholder,
 textarea:focus::-webkit-input-placeholder {
-  border-color: $button-blue;
+  border-color: $blue;
   color: #333;
 }
 
@@ -336,16 +333,16 @@ table {
     margin: 0;
     padding: 0;
     display: block;
-    background: $yellow;
+    background: $greyish;
     border-top: 3px solid $light-blue;
 
     li {
       display: block;
       position: relative;
       padding: 0.4em 3.8em 0.4em 0.4em;
-      border-top:1px dashed #edb;
+      border-top:1px dashed $darker-yellow;
       &:first-child { border: 0; }
-      &.done { color: #ca8; text-decoration: line-through; }
+      &.done { color: $dark-orange; text-decoration: line-through; }
 
       span {
         display: inline-block;
@@ -366,7 +363,7 @@ table {
 
   input {
     display: inline-block;
-    margin: 0;
+    margin-top: 1em;
     padding: 0.4em;
     border: 0;
     float:left;
