@@ -74,7 +74,7 @@ p { margin: 0 0 1.6em; }
 .right { text-align: right; }
 
 .container {
-  width: 100%;
+  max-width: 32em;
   margin: 0 auto;
   padding: 0;
   position: relative;
@@ -457,7 +457,6 @@ body.pages-front { border-top: 15px solid $dark-blue; }
 @media screen and (min-width:560px) {
 
   body { font: 130%/1.6 'proxima-nova', 'Helvetica Neue'; }
-  .container { width: 560px; }
   .pages-front .container, .estimates-index .container, [class*='registrations-'] .container, [class*='sessions-'] .container { width: 440px; }
 
   h1 { font-size: 1.8em; }
