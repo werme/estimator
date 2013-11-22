@@ -2,23 +2,27 @@
 @import 'icons.css';
 
 $darker-blue: #005790; //#0077B0;
-$dark-blue: #0067A0; //#0087C0;
-$blue: #0087C0; //#00A7E0;
-$light-blue: #6EDCFF;
+$dark-blue: #294C6D; //#0087C0;
+$blue: #328EC9; //#0087C0; //#00A7E0;
+$light-blue: #72D0FF;
 $lighter-blue: #BEF;
-$button-blue: #00BEFF;
-$hover-blue: #51C9FF;
+$button-blue: #207DB1;
+$hover-blue: darken($button-blue, 5%);
 $header-blue: #10B7F0;
 
 $red: #e65;
 $dark-red: #d54;
 $dark-orange: #B40;
 $orange: #E73;
+$dark-orange: #C2864B;
 $light-orange: #FF9550;
 $lighter-orange: #FFB570;
 $yellow: #fff3e3;
+$dark-yellow: #DBD0BE;
+$darker-yellow: #CEBB94;
 $yellow-dark-tint: #fae8d8;
 $yellow-light-tint: #fff9f3;
+$greyish: #E6E4DD;
 
 *, *:after, *:before {
   box-sizing: border-box;
@@ -29,7 +33,7 @@ body {
   margin: 0 auto;
   padding: 0 0 2em;
   color: white;
-  background: $blue;
+  background: $dark-blue;
 }
 
 h1, h2, h3 {
@@ -50,7 +54,7 @@ h1 {
     font-weight: bold;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: $darker-blue;
+    color: lighten($dark-blue, 15%);
   }
 }
 
@@ -59,7 +63,7 @@ a {
   text-decoration: none;
   transition: all 0.15s;
 
-  &:hover { color: $light-blue; }
+  &:hover { color: lighten($dark-blue, 15%); }
 }
 
 p { margin: 0 0 1.6em; }
@@ -90,7 +94,8 @@ p { margin: 0 0 1.6em; }
 }
 
 header {
-  background: $dark-blue;//$orange;//#f5f5f5;
+  //background: $dark-blue;//$orange;//#f5f5f5;
+  border-bottom: 3px dashed lighten($dark-blue, 5%);
   text-transform: uppercase;
   letter-spacing: 0.2em;
   line-height: 42px;
@@ -102,7 +107,7 @@ header {
 
   a {
     color: white;
-    &:hover { color: $light-blue; }
+    &:hover { color: lighten($dark-blue, 15%); }
   }
 
   .top-bar nav {
@@ -167,12 +172,11 @@ footer {
   padding: 0.6em;
   text-align: left;
   color: white;
-  background: $blue;
   border-bottom: 2px dotted $light-blue;
   transition: all 0.2s;
 
   &:hover,
-  &:active { background: $button-blue; color: white; }
+  &:active { background: lighten($dark-blue, 6%); color: white; }
   &:last-child { border: 0; }
 }
 
@@ -263,16 +267,19 @@ table {
   }
 
   tbody {
-    background: #fff3e3;
+    background: $dark-yellow;
+    border: 1px solid $darker-yellow;
+    border-top: 0;
+    overflow: hidden;
 
-    tr { border-bottom:1px solid #edb; }
+    tr { border-bottom:1px solid $darker-yellow; }
     tr:hover, tr.sub-task:hover { color: $orange; background: $yellow-dark-tint; }
     tr td:last-child { text-align: right; }
   }
 
   tr.sub-task {
-    background: white;
-    color: #ca8;
+    background: $greyish;
+    color: $dark-orange;
 
     td { font-size: 0.85em; }
     td:first-child { padding-left: 0.6em; }
