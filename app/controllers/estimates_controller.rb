@@ -8,9 +8,6 @@ class EstimatesController < ApplicationController
   def show
     @estimate = Estimate.find params[:id]
     @note = Note.new
-    @estimate.tasks.each { |t| unless t.tasks.empty? then t.hours = t.tasks.map(&:hours).inject(0, :+); t.save end }
-    @total = @estimate.tasks.map { |t| t.hours * t.rate }.sum
-    @hours = @estimate.tasks.map { |t| t.hours }.sum
   end
 
   def new

@@ -9,4 +9,12 @@ class Task < ActiveRecord::Base
   validates :name, presence: true
   validates :hours, numericality: { only_integer: true }
   validates :rate, numericality: { only_integer: true }
+
+  def hours
+    unless self.tasks.empty?
+      self.tasks.map(&:hours).inject(0, :+)
+    else
+      self.read_attribute(:hours)
+    end
+  end
 end

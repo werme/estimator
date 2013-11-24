@@ -11,4 +11,12 @@ class Estimate < ActiveRecord::Base
   validates :project, presence: true
   validates_associated :user
   validates :project, length: { in: 2..60 }
+
+  def total_cost
+    self.tasks.map { |t| t.hours * t.rate }.sum
+  end
+
+  def total_hours
+    self.tasks.map { |t| t.hours }.sum
+  end
 end

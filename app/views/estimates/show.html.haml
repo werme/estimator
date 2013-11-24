@@ -45,17 +45,17 @@
               %td
               %td.hours= sub.hours
               %td
-              %td.fee= unless sub.parent.rate.nil? or sub.hours.nil? then sub.parent.rate * sub.hours end
+              %td
               %td
                 = link_to content_tag(:i, nil, class: "icon-edit"), edit_child_task_path(t, sub)
                 = link_to content_tag(:i, nil, class: "icon-cancel"), estimate_task_path(@estimate, sub), method: :delete, class: "delete-icon", title: "Delete this task"
 
   %p.total
     Hours:
-    %span= @hours
+    %span= @estimate.total_hours
     |
     Total fee:
-    %span= @total
+    %span= @estimate.total_cost
 
 - else
   %p This project type has no tasks. You should create some, tasks are awesome. Just press the leftest one of the nifty icons below.
