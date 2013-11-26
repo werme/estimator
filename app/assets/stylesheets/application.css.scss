@@ -48,11 +48,10 @@ h1 {
 
   span {
     display: block;
-    font-size: 0.45em;
-    font-weight: bold;
-    letter-spacing: 0.1em;
+    font: 0.45em/1.5 'source-code-pro', monaco;
+    font-weight: normal;
     text-transform: uppercase;
-    color: lighten($dark-blue, 15%);
+    color: $light-blue;
   }
 }
 
@@ -377,7 +376,6 @@ table {
   color: $light-blue;
 
   em { padding: 0.4em; font-size: 0.8em; font-style: normal; text-transform: uppercase; line-height: 2.4em; }
-  a { font-family: 'proxima-nova', 'Helvetica Neue'; }
 }
 
 .total {
