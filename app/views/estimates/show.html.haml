@@ -72,11 +72,11 @@
   %em Users with access to this project:
   %p
     %span.tag
-      = link_to @estimate.user.name, @estimate.user
+      = link_to @estimate.author_name, @estimate.author
     - @estimate.editors.each do |u|
       %span.tag
         = link_to u.name, u
-        - if current_user == @estimate.user
+        - if current_user == @estimate.author
           = link_to content_tag(:i, nil, class: "icon-cancel"), estimate_update_users_path(@estimate, editor: u.email, estimate: { project: @estimate.project } ), method: :patch, data: { confirm: "Are you sure you want to remove access for this user?" } , class: "delete-icon", title: "Make this template private"
     %span.tag
       = link_to content_tag(:i, nil, class: "icon-user-add add-user"), estimate_add_user_path(@estimate), class: "add-user"

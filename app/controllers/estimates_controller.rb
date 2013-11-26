@@ -57,23 +57,23 @@ class EstimatesController < ApplicationController
   end
 
   def update_users
-    # TODO
     estimate = Estimate.find params[:estimate_id]
 
     unless params[:editor].empty?
-      if User.find_by_email params[:editor]
-        user = User.find_by_email params[:editor]
-        if estimate.user == user
+      user = User.find_by_email params[:editor]
+    
+      if user
+        if estimate.author == user
           flash[:error] = "#{user.name} is the author of this project"
         elsif estimate.editors.include? user
-          flash[:notice] = "#{user.name} was removed from this project"
-          estimate.editors.delete user
+          flash[:notice] = "#{user.name} already has access to this project"
         else
           estimate.editors << user
           flash[:notice] = "Gave access to user #{user.name}"
         end
       else
         flash[:error] = "No such user"
+        # send invite
       end
     end
 

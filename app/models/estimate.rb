@@ -1,7 +1,7 @@
 class Estimate < ActiveRecord::Base
   has_many :tasks, dependent: :destroy
   has_many :notes, dependent: :destroy
-  belongs_to :user
+  belongs_to :author, class_name: "User", foreign_key: "user_id"
   has_and_belongs_to_many :editors, class_name: "User"
 
   # accepts_nested_attributes_for :editors
