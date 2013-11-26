@@ -6,7 +6,7 @@ class Estimate < ActiveRecord::Base
 
   # accepts_nested_attributes_for :editors
 
-  auto_strip_attributes :project, :description, :nullify => false, :squish => true
+  auto_strip_attributes :project, :description, nullify: false, squish: true
 
   validates :project, presence: true
   validates_associated :user
