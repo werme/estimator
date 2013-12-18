@@ -15,17 +15,17 @@ class Ability
       can [:create], [Estimate, Template]
     end
 
-    can :manage, [Estimate, Template], user_id: user.id
+    can :manage, [Estimate, Template], author_id: user.id
     can :manage, [Estimate], user.accessed_estimates.include?(:id)
 
     can :manage, Task do |t|
       if params.try(:[], :estimate_id)
-        Estimate.find(params[:estimate_id]).try(:user_id) == user.id
+        Estimate.find(params[:estimate_id]).try(:author_id) == user.id
       elsif params.try(:[], :template_id)
-        Template.find(params[:template_id]).try(:user_id) == user.id
+        Template.find(params[:template_id]).try(:author_id) == user.id
       elsif params.try(:[], :parent_id)
         parent = Task.find(params[:parent_id])
-        parent.try(:estimate).try(:user_id) == user.id or parent.try(:template).try(:user_id) == user.id
+        parent.try(:estimate).try(:author_id) == user.id or parent.try(:template).try(:author_id) == user.id
       end
     end
 

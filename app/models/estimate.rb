@@ -2,14 +2,17 @@ class Estimate < ActiveRecord::Base
   has_many :tasks, dependent: :destroy
   has_many :notes, dependent: :destroy
   belongs_to :author, class_name: "User", foreign_key: "author_id"
+  belongs_to :template
   has_and_belongs_to_many :editors, class_name: "User"
 
   # accepts_nested_attributes_for :editors
 
+  before_create :init
+
   auto_strip_attributes :project, :description, nullify: false, squish: true
 
   validates :project, presence: true
-  validates_associated :user
+  validates_associated :author
   validates :project, length: { in: 2..60 }
 
   delegate :name, to: :author, prefix: true
@@ -22,8 +25,18 @@ class Estimate < ActiveRecord::Base
     self.tasks.map { |t| t.hours }.sum
   end
 
-  def default_from(template)
+  def init
+    if self.template
+      template = Template.find(self.template)
+      bootstrap_estimate template
+    end
+  end
+
+  def bootstrap_estimate(template) 
     estimate.tasks = template.tasks
-    estimate.tasks.each { |t| t.rate = template.default_rate || 0; t.hours = 0 }
+    estimate.tasks.each do |t| 
+      t.rate = template.default_rate || 0
+      t.hours = 0
+    end
   end
 end

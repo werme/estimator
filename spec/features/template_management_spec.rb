@@ -4,7 +4,7 @@ feature "Template management" do
 
   before do
     @user     = FactoryGirl.create(:user, email: "unicorn@mail.com", password: "password")
-    @template = FactoryGirl.create(:template, user: @user)
+    @template = FactoryGirl.create(:template, author: @user)
     @task     = FactoryGirl.create(:task, template: @template )
     login(@user, "password")
   end

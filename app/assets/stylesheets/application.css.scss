@@ -404,11 +404,8 @@ a.delete-icon:hover { color: #F44; }
 #error_explanation, .alert, .error {
   text-align: left;
   font-size: 0.8em;
-  padding: 0.6em;
-  margin-top: 1em;
-  background: $red;
-  color: white;
-  border: 5px solid $dark-red;
+  margin-top: 2em;
+  color: $red;
   h2 {
     margin: 0;
     font-size: 1em;
@@ -424,11 +421,8 @@ a.delete-icon:hover { color: #F44; }
 .notice {
   text-align: left;
   font-size: 0.8em;
-  padding: 0.6em;
-  margin-top: 1em;
-  background: #3D8;
-  color: white;
-  border: 5px solid #2C7;
+  margin-top: 2em;
+  color: #3D8;
 }
 
 /**************/

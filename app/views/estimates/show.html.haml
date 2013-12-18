@@ -58,7 +58,7 @@
     %span= @estimate.total_cost
 
 - else
-  %p This project type has no tasks. You should create some, tasks are awesome. Just press the leftest one of the nifty icons below.
+  %p This project has no tasks. You should create some, tasks are awesome. Just press the leftest one of the nifty icons below.
 
 .project-icons
   = link_to content_tag(:i, nil, class: "icon-doc-new"), new_estimate_task_path(@estimate), title: "Create a new task for this project"

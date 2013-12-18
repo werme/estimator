@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :estimate do
-    association :author, factory: :user
-    #author
+    author
     project "Default unicorn project"
   end
 end

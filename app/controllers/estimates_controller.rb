@@ -12,17 +12,12 @@ class EstimatesController < ApplicationController
 
   def new
     @estimate = Estimate.new
+    @templates = Template.all
   end
 
   def create
     estimate = Estimate.new estimate_params
-
-    unless params[:estimate][:template_id].empty?
-      template = Template.find params[:estimate][:template_id]
-      # Change to estimate.default_from(template)
-      # estimate.tasks = template.tasks
-      # estimate.tasks.each { |t| t.rate = template.default_rate || 0; t.hours = 0 }
-    end
+    estimate.author = current_user
 
     if estimate.save
       redirect_to estimate
@@ -84,6 +79,6 @@ class EstimatesController < ApplicationController
   private
 
   def estimate_params
-    params.require(:estimate).permit(:project, :description, :user_id) #, editors_attributes: [:user])
+    params.require(:estimate).permit(:project, :description) #, editors_attributes: [:user])
   end
 end

@@ -3,13 +3,13 @@ require "spec_helper"
 feature "Project management" do
 
   before do
-    @author   = FactoryGirl.create(:user, email: "unicorn@mail.com", password: "password")
-    @estimate = FactoryGirl.create(:estimate, user: @author)
+    @user   = FactoryGirl.create(:user, email: "unicorn@mail.com", password: "password")
+    @estimate = FactoryGirl.create(:estimate, author: @user)
     @task     = FactoryGirl.create(:task, estimate: @estimate )
-    login(@author, "password")
+    login(@user, "password")
   end
 
-  let(:user) { @author }
+  let(:user) { @user }
   let(:estimate) { @estimate }
   let(:task) { @task }
 
@@ -19,7 +19,7 @@ feature "Project management" do
     fill_in "estimate[project]", with: "My unicorn project"
     fill_in "estimate[description]", with: "My unicorn project description"
     click_button "Create project"
-    expect(page).to have_text("This template has no tasks.")
+    expect(page).to have_text("This project has no tasks.")
   end
 
   scenario "User deletes a project" do

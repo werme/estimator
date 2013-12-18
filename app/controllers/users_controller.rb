@@ -3,6 +3,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @templates = Template.where({ user: @user, public: true })
+    @templates = Template.where({ author: @user, public: true })
   end
 end

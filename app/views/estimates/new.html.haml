@@ -2,6 +2,5 @@
 = form_for(@estimate) do |e|
   = e.text_field :project, :placeholder => "Project name"
   = e.text_area :description, :placeholder => "Description"
-  = collection_select(:estimate, :template, Template.all, :id, :name, {:include_blank => 'Project type (optional)'})
-  = e.hidden_field :user_id, value: current_user.id
+  = e.collection_select(:template_id, @templates, :id, :name, {:include_blank => 'Template (optional)'})
   = e.submit "Create project"

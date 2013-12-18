@@ -12,7 +12,7 @@ class TemplatesController < ApplicationController
 
   def create
     template = Template.new(template_params)
-    template.user = current_user
+    template.author = current_user
 
     if template.save
       redirect_to template
@@ -46,6 +46,6 @@ class TemplatesController < ApplicationController
   private
 
   def template_params
-    params.require(:template).permit(:name, :description, :default_rate, :public, :user_id)
+    params.require(:template).permit(:name, :description, :default_rate, :public)
   end
 end

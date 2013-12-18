@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131218123332) do
+ActiveRecord::Schema.define(version: 20131218205338) do
 
   create_table "estimates", force: true do |t|
     t.datetime "created_at"
@@ -61,11 +61,11 @@ ActiveRecord::Schema.define(version: 20131218123332) do
     t.integer  "task_id"
     t.string   "description"
     t.integer  "default_rate"
-    t.integer  "user_id"
+    t.integer  "author_id"
     t.boolean  "public"
   end
 
-  add_index "templates", ["user_id"], name: "index_templates_on_user_id"
+  add_index "templates", ["author_id"], name: "index_templates_on_author_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
