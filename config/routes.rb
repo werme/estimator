@@ -12,7 +12,7 @@ Estimator::Application.routes.draw do
     patch     'update_users'  => 'estimates#update_users', :as => 'update_users'
   end
 
-  resources :project_types do
+  resources :templates do
     resources :tasks, :except => [:index]
   end
 

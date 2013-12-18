@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :project_type do
-    name "Default unicorn project type"
+  factory :template do
+    name "Default unicorn template"
   end
 end

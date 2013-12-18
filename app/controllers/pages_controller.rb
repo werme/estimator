@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   end
 
   def settings
-    @project_types = ProjectType.all
+    @templates = Template.all
     authorize! :view, :settings
   end
 end

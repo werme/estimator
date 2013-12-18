@@ -58,8 +58,8 @@ class TasksController < ApplicationController
       redirect_to Estimate.find params[:estimate_id]
     elsif params[:parent_id]
       redirect_to Task.find(params[:parent_id]).estimate
-    elsif params[:project_type_id]
-      redirect_to ProjectType.find params[:project_type_id]
+    elsif params[:template_id]
+      redirect_to Template.find params[:template_id]
     else
       flash[:error] = "Something wierd happened, macaroni!"
       redirect_to :root
@@ -67,6 +67,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :rate, :hours, :parent_id, :estimate_id, :project_type_id)
+    params.require(:task).permit(:name, :rate, :hours, :parent_id, :estimate_id, :template_id)
   end
 end

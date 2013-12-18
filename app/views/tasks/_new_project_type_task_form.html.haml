@@ -1,4 +1,0 @@
-= form_for @task, :url => project_type_tasks_path(params[:project_type_id]) do |f|
-  = f.text_field :name, :placeholder => "Name for task"
-  = f.hidden_field :project_type_id, value: params[:project_type_id]
-  = f.submit

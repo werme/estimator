@@ -1,0 +1,37 @@
+%h1
+  %span Template:
+  = @template.name
+
+%p
+  - unless @template.description.nil? or @template.description.empty?
+    = @template.description
+  - else
+    This template has no description. Did you know that a kitten dies every time someone creates a template without a proper description? Now you do.
+
+= form_for @template, html: { class: "inline" } do |p|
+  = p.text_field :default_rate, :placeholder => @template.default_rate || "none", :size => 4
+  = p.submit "Set default rate"
+
+- unless @template.tasks.empty?
+  %table
+    %thead
+      %td Task
+      %td
+    %tbody
+      - @template.tasks.each do |t|
+        %tr
+          %td= t.name
+          %td
+            = link_to content_tag(:i, nil, class: "icon-edit"), edit_template_task_path(@template, t)
+            = link_to content_tag(:i, nil, class: "icon-cancel"), template_task_path(@template, t), :method => :delete, class: "delete-icon"
+- else
+  %p This template has no tasks. You should create some, tasks are awesome. Just press the leftest one of the nifty icons below.
+
+%p.project-icons
+  = link_to content_tag(:i, nil, class: "icon-doc-new"), new_template_task_path(@template), title: "Create a new task for this project"
+  = link_to content_tag(:i, nil, class: "icon-edit"), edit_template_path, title: "Edit template title or description"
+  - unless @template.public == true
+    = link_to content_tag(:i, nil, class: "icon-share"), template_path(@template, template: { public: true }), method: :patch, title: "Make this template public" # , data: { confirm: "Are you sure you want to make this template public?" }
+  - else
+    = link_to content_tag(:i, nil, class: "icon-share"), template_path(@template, template: { public: false }), method: :patch, class: "delete-icon", title: "Make this template private" # , data: { confirm: "Are you sure you want to make this template private?" } 
+  = link_to content_tag(:i, nil, class: "icon-trash"), @template, method: :delete, class: "delete-icon", title: "Delete this template" # , data: { confirm: "Wait, really? This project type is awesome. Sure you want to delete?" }, 

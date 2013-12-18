@@ -1,0 +1,5 @@
+%h1 Edit template
+= form_for(@template) do |p|
+  = p.text_field :name, :placeholder => "Template name"
+  = p.text_area :description, :placeholder => "Description"
+  = p.submit

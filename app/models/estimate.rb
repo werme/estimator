@@ -1,7 +1,7 @@
 class Estimate < ActiveRecord::Base
   has_many :tasks, dependent: :destroy
   has_many :notes, dependent: :destroy
-  belongs_to :author, class_name: "User", foreign_key: "user_id"
+  belongs_to :author, class_name: "User", foreign_key: "author_id"
   has_and_belongs_to_many :editors, class_name: "User"
 
   # accepts_nested_attributes_for :editors
@@ -13,12 +13,17 @@ class Estimate < ActiveRecord::Base
   validates :project, length: { in: 2..60 }
 
   delegate :name, to: :author, prefix: true
-
+  
   def total_cost
     self.tasks.map { |t| t.hours * t.rate }.sum
   end
 
   def total_hours
     self.tasks.map { |t| t.hours }.sum
+  end
+
+  def default_from(template)
+    estimate.tasks = template.tasks
+    estimate.tasks.each { |t| t.rate = template.default_rate || 0; t.hours = 0 }
   end
 end

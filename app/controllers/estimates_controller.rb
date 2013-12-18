@@ -17,10 +17,11 @@ class EstimatesController < ApplicationController
   def create
     estimate = Estimate.new estimate_params
 
-    unless params[:default][:project_type_id].empty?
-      project_type = ProjectType.find params[:default][:project_type_id]
-      estimate.tasks = project_type.tasks
-      estimate.tasks.each { |t| t.rate = project_type.default_rate || 0; t.hours = 0 }
+    unless params[:estimate][:template_id].empty?
+      template = Template.find params[:estimate][:template_id]
+      # Change to estimate.default_from(template)
+      # estimate.tasks = template.tasks
+      # estimate.tasks.each { |t| t.rate = template.default_rate || 0; t.hours = 0 }
     end
 
     if estimate.save
