@@ -56,6 +56,7 @@ class EstimatesController < ApplicationController
     estimate = Estimate.find params[:estimate_id]
 
     unless params[:editor].empty?
+      # Try to fetch a user from the given email
       user = User.find_by_email params[:editor]
     
       if user
@@ -68,8 +69,8 @@ class EstimatesController < ApplicationController
           flash[:notice] = "Gave access to user #{user.name}"
         end
       else
-        flash[:error] = "No such user"
-        # send invite
+        flash[:notice] = "Sent an invite to #{params[:editor]} since no registered user was found."
+        UserMailer.invite(current_user, params[:editor]).deliver
       end
     end
 

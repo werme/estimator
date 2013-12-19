@@ -132,6 +132,10 @@ header {
       a {
         display: block;
         line-height: 30px;
+
+        &:hover {
+          color: $dark-blue;
+        }
       }
     }
   }
