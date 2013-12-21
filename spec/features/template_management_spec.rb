@@ -30,25 +30,25 @@ feature "Template management" do
     expect(page).to have_text("Settings")
   end
 
-  # scenario "User creates a new task for project" do
-  #   visit estimate_path(estimate.id)
-  #   click_link "Create a new task for this project"
-  #   fill_in "task[name]", with: "My unicorn task"
-  #   click_button "Create Task"
-  #   expect(page).to have_text("My unicorn task")
-  # end
+  scenario "User creates a new task for project" do
+    visit template_path(template)
+    click_link "Create a new task for this project"
+    fill_in "task[name]", with: "My unicorn task"
+    click_button "Create Task"
+    expect(page).to have_text("My unicorn task")
+  end
 
-  # scenario "User tries to create a new task without a title" do
-  #   visit estimate_path(estimate.id)
-  #   click_link "Create a new task for this project"
-  #   fill_in "task[name]", with: " "
-  #   click_button "Create Task"
-  #   expect(page).to have_text("Name can't be blank")
-  # end
+  scenario "User tries to create a new task without a title" do
+    visit template_path(template)
+    click_link "Create a new task for this project"
+    fill_in "task[name]", with: " "
+    click_button "Create Task"
+    expect(page).to have_text("Name can't be blank")
+  end
 
-  # scenario "User deletes a task" do 
-  #   visit estimate_path(estimate.id)
-  #   click_link "Delete this task"
-  #   expect(page).not_to have_text(task.name)
-  # end
+  scenario "User deletes a task" do 
+    visit template_path(template)
+    click_link "Delete this task"
+    expect(page).not_to have_text(task.name)
+  end
 end

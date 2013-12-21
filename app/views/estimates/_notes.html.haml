@@ -3,7 +3,7 @@
   - unless @estimate.notes.empty?
     %ul
       - @estimate.notes.each do |n|
-        %li{class: ("done" if n.done?)}
+        %li{ class: ("done" if n.done?) }
           = n.text
           %span
             - if n.done?
