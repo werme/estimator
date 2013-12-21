@@ -23,7 +23,7 @@
           %td= t.name
           %td
             = link_to content_tag(:i, nil, class: "icon-edit"), edit_template_task_path(@template, t)
-            = link_to content_tag(:i, nil, class: "icon-cancel"), template_task_path(@template, t), :method => :delete, class: "delete-icon"
+            = link_to content_tag(:i, nil, class: "icon-cancel"), template_task_path(@template, t), :method => :delete, class: "delete-icon", title: "Delete this task"
 - else
   %p This template has no tasks. You should create some, tasks are awesome. Just press the leftest one of the nifty icons below.
 
