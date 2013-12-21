@@ -11,7 +11,10 @@ describe User do
   
   subject { user }
 
-  it { should respond_to :name, :email, :reset_password_token, :created_at }
+  it { should respond_to :name,
+                         :email, 
+                         :reset_password_token, 
+                         :created_at }
   it { should be_valid }
 
   context "When name is not present" do
