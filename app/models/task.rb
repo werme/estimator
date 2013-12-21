@@ -10,11 +10,13 @@ class Task < ActiveRecord::Base
   validates :hours, numericality: { only_integer: true }
   validates :rate, numericality: { only_integer: true }
 
+  delegate :author, to: :project, prefix: false
+
   def project
-    unless self.estimate.nil?
-      self.estimate
+    if self.parent
+      self.parent.project 
     else
-      self.template
+      self.estimate || self.template
     end
   end
 

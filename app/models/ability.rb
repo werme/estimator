@@ -12,20 +12,18 @@ class Ability
       can :read, User, id: user.id
       can :view, :settings
       can :new, Task
-      can [:create], [Estimate, Template]
+      can :create, [Estimate, Template]
     end
 
-    can :manage, [Estimate, Template], author_id: user.id
-    can :manage, [Estimate], user.accessed_estimates.include?(:id)
+    can :manage, [Estimate, Template], author: user
+    can :manage, Estimate, user.accessed_estimates.include?(:id)
 
+    # Can't handle deligated calls without do?
     can :manage, Task do |t|
-      if params.try(:[], :estimate_id)
-        Estimate.find(params[:estimate_id]).try(:author_id) == user.id
-      elsif params.try(:[], :template_id)
-        Template.find(params[:template_id]).try(:author_id) == user.id
-      elsif params.try(:[], :parent_id)
-        parent = Task.find(params[:parent_id])
-        parent.try(:estimate).try(:author_id) == user.id or parent.try(:template).try(:author_id) == user.id
+      unless t.project.nil?
+        t.author == user # Delegates through project
+      else
+        false
       end
     end
 

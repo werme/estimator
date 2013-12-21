@@ -20,8 +20,8 @@
       %td
     %tbody
       - @estimate.tasks.each do |t|
-        %tr
-          %td= truncate(t.name, length: 18)
+        %tr{ title: t.name }
+          %td= truncate(t.name, length: 30)
           %td.rate= t.rate
           %td.symbol x
           %td.hours= t.hours
@@ -38,17 +38,7 @@
             = link_to content_tag(:i, nil, class: "icon-cancel"), estimate_task_path(@estimate, t), :method => :delete, class: "delete-icon", title: "Delete this task"
         - unless t.subtasks.empty?
           - t.subtasks.each do |sub|
-            %tr.sub-task
-              %td{:colspan => "2"}
-                = content_tag(:i, nil, :class => "icon-level-down")
-                = truncate(sub.name, length: 22)
-              %td
-              %td.hours= sub.hours
-              %td
-              %td
-              %td
-                = link_to content_tag(:i, nil, class: "icon-edit"), edit_child_task_path(t, sub)
-                = link_to content_tag(:i, nil, class: "icon-cancel"), estimate_task_path(@estimate, sub), method: :delete, class: "delete-icon", title: "Delete this task"
+            = render "/shared/subtask_tree", pre: 0, parent: t, task: sub
 
   %p.total
     Hours:

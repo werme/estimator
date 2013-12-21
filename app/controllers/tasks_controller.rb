@@ -35,12 +35,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    task   = Task.new task_params
-    parent = Task.find params[:parent_id]
-
-    # Use parent estimate and template
-    task.estimate = parent.estimate
-    task.template = parent.template
+    task = Task.new task_params
 
     if task.save
       redirect_to task.project
