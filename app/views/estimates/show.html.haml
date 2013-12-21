@@ -27,8 +27,8 @@
           %td.hours= t.hours
           %td.symbol =
           %td.fee
-            - unless t.tasks.empty? or t.rate.nil?
-              = t.tasks.map(&:hours).inject(0, :+) * t.rate
+            - unless t.subtasks.empty? or t.rate.nil?
+              = t.subtasks.map(&:hours).inject(0, :+) * t.rate
             - else
               - unless t.rate.nil? or t.hours.nil?
                 = t.rate * t.hours
@@ -36,8 +36,8 @@
             = link_to content_tag(:i, nil, class: "icon-flow-split"), new_child_task_path(t)
             = link_to content_tag(:i, nil, class: "icon-edit"), edit_estimate_task_path(@estimate, t)
             = link_to content_tag(:i, nil, class: "icon-cancel"), estimate_task_path(@estimate, t), :method => :delete, class: "delete-icon", title: "Delete this task"
-        - unless t.tasks.empty?
-          - t.tasks.each do |sub|
+        - unless t.subtasks.empty?
+          - t.subtasks.each do |sub|
             %tr.sub-task
               %td{:colspan => "2"}
                 = content_tag(:i, nil, :class => "icon-level-down")
