@@ -1,5 +1,5 @@
-@import 'normalize.css';
-@import 'icons.css';
+@import "normalize.css";
+@import "icons.css";
 
 $darker-blue: #005790; //#0077B0;
 $dark-blue: #294C6D; //#0087C0;
@@ -27,32 +27,47 @@ $greyish: #E6E4DD;
 }
 
 body {
-  font: 110%/1.6 'proxima-nova', 'Helvetica Neue';//'freight-sans-pro';
+  font: 110%/1.6 "proxima-nova", "Helvetica Neue"; // "freight-sans-pro";
   margin: 0 auto;
   padding: 0 0 2em;
   color: white;
   background: $dark-blue;
+
+  @media screen and (min-width:560px) {
+    font-size: 130%;
+    line-height: 1.6;
+  }
 }
 
 h1, h2, h3 {
-  font-family: 'brandon-grotesque', 'Helvetica Neue';
+  font-family: "proxima-nova", "Helvetica Neue"; // "brandon-grotesque"
   font-weight: 400;
   color: white;
 }
 
 h1 {
   margin: 1em 0;
-  font: 1.4em/1em 'proxima-nova', 'Helvetica Neue';
+  font: 1.4em/1em "proxima-nova", "Helvetica Neue";
   font-weight: 500;
   letter-spacing: 0.05em;
 
   span {
     display: block;
-    font: 0.45em/1.5 'source-code-pro', monaco;
+    font: 0.45em/1.5 "source-code-pro", monaco;
     font-weight: normal;
     text-transform: uppercase;
     color: $light-blue;
   }
+
+  @media screen and (min-width:560px) {
+    font-size: 1.8em;
+  }
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: 0.05em;
+  font-weight: 300;
 }
 
 a {
@@ -103,7 +118,7 @@ header {
 
   a {
     color: white;
-    &:hover { color: lighten($dark-blue, 15%); }
+    &:hover { color: $dark-blue; }
   }
 
   .top-bar nav {
@@ -117,6 +132,11 @@ header {
     height: 200px;
     margin-top: -200px;
     transition: all 0.4s;
+    
+    @media screen and (min-width:560px) {
+      height: 150px;
+      margin-top: -150px;
+    }
 
     .user {
       float: left;
@@ -129,16 +149,17 @@ header {
       width: 100%;
       float:left;
 
+      @media screen and (min-width:560px) {
+        width: 50%; 
+      }
+
       a {
         display: block;
         line-height: 30px;
-
-        &:hover {
-          color: $dark-blue;
-        }
       }
     }
   }
+
   .menu-open { margin-top: 0; }
   .top-bar { padding: 0.6em 1.4em; }
 }
@@ -247,7 +268,7 @@ textarea:focus::-webkit-input-placeholder {
 
 table {
   margin: 2em 0 1em;
-  font: 0.8em/1.5 'source-code-pro', monaco;
+  font: 0.8em/1.5 "source-code-pro", monaco;
   width: 100%;
   color: #333;
 
@@ -318,7 +339,7 @@ table {
 }
 
 .notes {
-  font: 0.8em/1.5 'source-code-pro', monaco;
+  font: 0.8em/1.5 "source-code-pro", monaco;
   color: #333;
   margin-bottom: 1em;
 
@@ -438,16 +459,18 @@ body.pages-front { border-top: 15px solid $dark-blue; }
 .pages-front {
   h1 {
     margin: 0.6em auto 0.2em;
-    font-family: "brandon-grotesque", 'Helvetica Neue';
+    font-family: "brandon-grotesque", "Helvetica Neue";
     font-size: 1.8em;
     font-weight: bold;
-    color: white;//#00BEFF;//#FFD245;
+    color: white; //#00BEFF; //#FFD245;
     text-transform: uppercase;
     letter-spacing: 0.2em;
     line-height: 1;
     text-align: center;
   }
 }
+
+// Brace yourself
 
 .pages-front section.main, .estimates-index section.main { padding: 0 1em; text-align: center; }
 .estimates-index section.main h1 { margin-bottom: 0.5em; }
@@ -456,23 +479,12 @@ body.pages-front { border-top: 15px solid $dark-blue; }
 
 @media screen and (min-width:560px) {
 
-  body { font: 130%/1.6 'proxima-nova', 'Helvetica Neue'; }
-  .pages-front .container, .estimates-index .container, [class*='registrations-'] .container, [class*='sessions-'] .container { width: 440px; }
-
-  h1 { font-size: 1.8em; }
-
+  .pages-front .container, .estimates-index .container, [class*='registrations-'] .container, [class*='sessions-'] .container { 
+    width: 440px;
+  }
+  
   .pages-front h1 {
     margin: 1.2em auto 0.2em;
     font-size: 2.6em;
-  }
-
-  header {
-    .hidden-menu {
-      height: 150px;
-      margin-top: -150px;
-
-      nav { width: 50%; }
-    }
-    .menu-open { margin-top: 0; }
   }
 }
