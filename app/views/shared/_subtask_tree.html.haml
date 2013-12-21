@@ -1,0 +1,17 @@
+%tr.sub-task{ title: task.name }
+  %td{colspan: "3"}
+    - pre.times do
+      = content_tag(:i, "--", style: "color: transparent")
+    = content_tag(:i, nil, class: "icon-level-down")
+    = truncate(task.name, length: (42-3*pre))
+  %td.hours= task.hours
+  %td
+  %td
+  %td
+    = link_to content_tag(:i, nil, class: "icon-flow-split"), new_child_task_path(task)
+    = link_to content_tag(:i, nil, class: "icon-edit"), edit_child_task_path(parent, task)
+    = link_to content_tag(:i, nil, class: "icon-cancel"), estimate_task_path(@estimate, task), method: :delete, class: "delete-icon", title: "Delete this sub task"
+
+- unless task.subtasks.empty?
+  - task.subtasks.each do |sub|
+    = render "/shared/subtask_tree", pre: (1+pre), parent: task, task: sub
