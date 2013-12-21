@@ -10,6 +10,14 @@ class Task < ActiveRecord::Base
   validates :hours, numericality: { only_integer: true }
   validates :rate, numericality: { only_integer: true }
 
+  def project
+    unless self.estimate.nil?
+      self.estimate
+    else
+      self.template
+    end
+  end
+
   def hours
     unless self.subtasks.empty?
       self.subtasks.map(&:hours).inject(0, :+)
