@@ -23,21 +23,21 @@ class TasksController < ApplicationController
     @parent = Task.find params[:parent_id]
   end
 
-  def update
-    task = Task.find params[:id]
+  def create
+    task = Task.new task_params
 
-    if task.update_attributes task_params 
+    if task.save
       redirect_to task.project
     else
       flash[:error] = task.errors.full_messages.to_sentence
       redirect_to :back
     end
   end
+  
+  def update
+    task = Task.find params[:id]
 
-  def create
-    task = Task.new task_params
-
-    if task.save
+    if task.update_attributes task_params 
       redirect_to task.project
     else
       flash[:error] = task.errors.full_messages.to_sentence
