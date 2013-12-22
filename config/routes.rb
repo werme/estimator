@@ -8,8 +8,8 @@ Estimator::Application.routes.draw do
   resources :estimates do
     resources :tasks, :except => [:index]
     resources :notes, :except => [:index, :show, :edit]
-    get       'add_user'      => 'estimates#add_user',     :as => 'add_user'
-    patch     'update_users'  => 'estimates#update_users', :as => 'update_users'
+    get       'new_editors'   => 'estimates#new_editors', :as => 'new_editors'
+    patch     'add_editors'   => 'estimates#add_editors', :as => 'add_editors'
   end
 
   resources :templates do
@@ -17,14 +17,14 @@ Estimator::Application.routes.draw do
   end
 
   get 'settings' => 'pages#settings', as: :settings
-  get 'home' =>     'pages#front',    as: :front
+  get 'home'     => 'pages#front',    as: :front
 
-  get   'parent/:parent_id/new' =>            'tasks#new_child_task',  :as => 'new_child_task'
+  get   'parent/:parent_id/new'            => 'tasks#new_child_task',  :as => 'new_child_task'
   get   'parent/:parent_id/tasks/:id/edit' => 'tasks#edit_child_task', :as => 'edit_child_task'
-  post  'parent/:parent_id/tasks' =>          'tasks#create',          :as => 'child_tasks'
-  get   'parent/:parent_id/tasks/:id' =>      'tasks#show',            :as => "child_task"
-  put   'parent/:parent_id/tasks/:id' =>      'tasks#update'
-  patch 'parent/:parent_id/tasks/:id' =>      'tasks#update'
+  post  'parent/:parent_id/tasks'          => 'tasks#create',          :as => 'child_tasks'
+  get   'parent/:parent_id/tasks/:id'      => 'tasks#show',            :as => "child_task"
+  put   'parent/:parent_id/tasks/:id'      => 'tasks#update'
+  patch 'parent/:parent_id/tasks/:id'      => 'tasks#update'
 
 
 

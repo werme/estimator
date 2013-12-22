@@ -50,27 +50,26 @@ class EstimatesController < ApplicationController
     redirect_to estimate
   end
 
-  def add_user
+  def new_editors
     @estimate = Estimate.find params[:estimate_id]
   end
 
-  def update_users
+  def add_editors
     estimate = Estimate.find params[:estimate_id]
 
     unless params[:editor].empty?
       # Try to fetch a user from the given email
       user = User.find_by_email params[:editor]
     
-      if user
-        if estimate.author == user
-          flash[:error] = "#{user.name} is the author of this project"
-        elsif estimate.editors.include? user
+      unless user.nil?
+        if estimate.author == user or estimate.editors.include? user
           flash[:notice] = "#{user.name} already has access to this project"
         else
           estimate.editors << user
           flash[:notice] = "Gave access to user #{user.name}"
         end
       else
+        # Send av invite to emails not registered
         flash[:notice] = "Sent an invite to #{params[:editor]} since no registered user was found."
         UserMailer.invite(current_user, params[:editor]).deliver
       end

@@ -63,4 +63,4 @@
         - if current_user == @estimate.author
           = link_to content_tag(:i, nil, class: "icon-cancel"), estimate_update_users_path(@estimate, editor: u.email, estimate: { project: @estimate.project } ), method: :patch, data: { confirm: "Are you sure you want to remove access for this user?" } , class: "delete-icon", title: "Make this template private"
     %span.tag
-      = link_to content_tag(:i, nil, class: "icon-user-add add-user"), estimate_add_user_path(@estimate), class: "add-user"
+      = link_to content_tag(:i, nil, class: "icon-user-add add-editors"), estimate_new_editors_path(@estimate), class: "add-editors"
