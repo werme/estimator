@@ -60,7 +60,7 @@ h1 {
   }
 
   @media screen and (min-width:560px) {
-    font-size: 1.8em;
+    font-size: 1.6em;
   }
 }
 
@@ -467,6 +467,14 @@ body.pages-front { border-top: 15px solid $dark-blue; }
     letter-spacing: 0.2em;
     line-height: 1;
     text-align: center;
+  }
+}
+
+.estimates-index {
+  h1 { 
+    margin: 1.4em auto 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
 }
 
