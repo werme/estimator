@@ -18,11 +18,11 @@ class Estimate < ActiveRecord::Base
   delegate :name, to: :author, prefix: true
   
   def total_cost
-    self.tasks.map { |t| t.hours * t.rate }.sum
+    self.tasks.map(&:total).inject(0, :+)
   end
 
   def total_hours
-    self.tasks.map { |t| t.hours }.sum
+    self.tasks.map(&:hours).inject(0, :+)
   end
 
   def init
