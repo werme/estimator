@@ -60,6 +60,7 @@ gem "devise", '~> 3.1'
 gem "figaro"
 gem "cancan"
 gem "auto_strip_attributes", "~> 1.0"
+gem "amoeba"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

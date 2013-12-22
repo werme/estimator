@@ -25,6 +25,8 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    amoeba (2.0.0)
+      activerecord (>= 3.0)
     arel (4.0.1)
     atomic (1.1.14)
     auto_strip_attributes (1.1)
@@ -217,6 +219,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  amoeba
   auto_strip_attributes (~> 1.0)
   better_errors
   bullet
