@@ -6,7 +6,9 @@ class EstimatesController < ApplicationController
   end
 
   def show
-    @estimate = Estimate.find params[:id]
+    # Lets eager load two levels of subtasks
+    @estimate = Estimate.includes(
+      tasks: {subtasks: {subtasks: :subtasks}}).find params[:id]
     @note = Note.new
   end
 
