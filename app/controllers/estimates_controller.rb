@@ -80,6 +80,6 @@ class EstimatesController < ApplicationController
   private
 
   def estimate_params
-    params.require(:estimate).permit(:project, :description) #, editors_attributes: [:user])
+    params.require(:estimate).permit(:project, :description, :template_id) #, editors_attributes: [:user])
   end
 end
