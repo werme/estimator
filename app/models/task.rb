@@ -27,4 +27,8 @@ class Task < ActiveRecord::Base
       self.read_attribute(:hours)
     end
   end
+
+  def total
+    self.hours * self.rate
+  end
 end
