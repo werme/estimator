@@ -26,19 +26,13 @@
           %td.symbol x
           %td.hours= t.hours
           %td.symbol =
-          %td.fee
-            - unless t.subtasks.empty? or t.rate.nil?
-              = t.subtasks.map(&:hours).inject(0, :+) * t.rate
-            - else
-              - unless t.rate.nil? or t.hours.nil?
-                = t.rate * t.hours
+          %td.fee= t.total
           %td
             = link_to content_tag(:i, nil, class: "icon-flow-split"), new_child_task_path(t), title: "Split this task into sub tasks"
             = link_to content_tag(:i, nil, class: "icon-edit"), edit_estimate_task_path(@estimate, t)
             = link_to content_tag(:i, nil, class: "icon-cancel"), estimate_task_path(@estimate, t), :method => :delete, clas: "delete-icon", title: "Delete this task"
-        - unless t.subtasks.empty?
-          - t.subtasks.each do |sub|
-            = render "/shared/subtask_tree", pre: 0, parent: t, task: sub
+        - t.subtasks.each do |sub|
+          = render "/shared/subtask_tree", pre: 0, parent: t, task: sub
 
   %p.total
     Hours:
