@@ -1,6 +1,6 @@
-= form_for @task, :url => estimate_tasks_path(params[:estimate_id]) do |f|
-  = f.text_field :name, :placeholder => "Name for task"
-  = f.text_field :rate, :placeholder => "Rate per hour for task"
-  = f.text_field :hours, :placeholder => "Estimated number of hours to complete task"
+= form_for @task, url: estimate_tasks_path(params[:estimate_id]) do |f|
+  = f.text_field :name, placeholder: "Name for task"
+  = f.text_field :rate, placeholder: "Rate per hour for task"
+  = f.text_field :hours, placeholder: "Estimated number of hours to complete task"
   = f.hidden_field :estimate_id, value: params[:estimate_id]
   = f.submit
