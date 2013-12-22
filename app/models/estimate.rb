@@ -5,24 +5,23 @@ class Estimate < ActiveRecord::Base
   belongs_to :template
   has_and_belongs_to_many :editors, class_name: "User"
 
-  # accepts_nested_attributes_for :editors
-
   before_create :init
 
   auto_strip_attributes :project, :description, nullify: false, squish: true
 
-  validates :project, presence: true
   validates_associated :author
+  validates :project, presence: true
   validates :project, length: { in: 2..60 }
 
+  # Use author_name over author.name
   delegate :name, to: :author, prefix: true
   
-  def total_cost
-    self.tasks.map(&:total).inject(0, :+)
+  def cost
+    self.tasks.map(&:total).inject(0,:+)
   end
 
-  def total_hours
-    self.tasks.map(&:hours).inject(0, :+)
+  def hours
+    self.tasks.map(&:hours).inject(0,:+)
   end
 
   def init
