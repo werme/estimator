@@ -25,17 +25,19 @@ class Estimate < ActiveRecord::Base
   end
 
   def init
-    if self.template
-      template = Template.find(self.template)
-      bootstrap_estimate template
-    end
+    # Bootstrap estimate from template if available
+    bootstrap_estimate if self.template
   end
 
-  def bootstrap_estimate(template) 
-    estimate.tasks = template.tasks
-    estimate.tasks.each do |t| 
-      t.rate = template.default_rate || 0
-      t.hours = 0
+  def bootstrap_estimate
+    template = Template.find(self.template)
+
+    # Duplicate tasks and subtasks from template
+    template.tasks.each do |t|
+      self.tasks << t.amoeba_dup
     end
+
+    # Set all task rates to the template default rate or zero
+    self.tasks.each { |t| t.rate = template.default_rate || 0 }
   end
 end
