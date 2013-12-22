@@ -40,9 +40,11 @@ end
 
 group :development do
   # gem "binding_of_caller"
-  gem "quiet_assets" # Turns off the Rails asset pipeline log
+  gem 'quiet_assets' # Turns off the Rails asset pipeline log
   gem 'thin'
-  # gem "better_errors"
+  gem 'rack-mini-profiler'
+  gem 'better_errors'
+  gem 'bullet'
 end
 
 group :test do

@@ -30,7 +30,13 @@ GEM
     auto_strip_attributes (1.1)
       activerecord (>= 3.0)
     bcrypt-ruby (3.1.2)
+    better_errors (1.0.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
     builder (3.1.4)
+    bullet (4.7.1)
+      activesupport
+      uniform_notifier (>= 1.4.0)
     cancan (1.6.10)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -121,6 +127,8 @@ GEM
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
+    rack-mini-profiler (0.1.31)
+      rack (>= 1.1.3)
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.0.1.rc4)
@@ -198,6 +206,7 @@ GEM
     uglifier (2.3.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uniform_notifier (1.4.0)
     warden (1.2.3)
       rack (>= 1.0)
     websocket (1.0.7)
@@ -209,6 +218,8 @@ PLATFORMS
 
 DEPENDENCIES
   auto_strip_attributes (~> 1.0)
+  better_errors
+  bullet
   cancan
   capybara (= 2.1)
   coffee-rails
@@ -222,6 +233,7 @@ DEPENDENCIES
   normalize-rails
   pg (~> 0.17.0)
   quiet_assets
+  rack-mini-profiler
   rails (= 4.0.1.rc4)
   rspec-rails (~> 2.14)
   sass-rails
