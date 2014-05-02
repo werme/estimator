@@ -49,12 +49,12 @@ h1 {
   margin: 1em 0;
   font: 1.4em/1em "proxima-nova", "Helvetica Neue";
   font-weight: 500;
-  letter-spacing: 0.05em;
 
   span {
     display: block;
     font: 0.45em/1.5 "source-code-pro", monaco;
     font-weight: normal;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: $light-blue;
   }
