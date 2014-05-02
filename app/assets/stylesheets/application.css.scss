@@ -384,7 +384,6 @@ table {
     }
   }
 
-
   input {
     display: inline-block;
     margin-top: 1em;
@@ -400,7 +399,15 @@ table {
   font: 0.8em/1.8 'source-code-pro', monaco;
   color: $light-blue;
 
-  em { padding: 0.4em; font-size: 0.8em; font-style: normal; text-transform: uppercase; line-height: 2.4em; }
+  .tag { padding: 0.2em 0.4em; }
+
+  em { 
+    padding: 0.4em; 
+    font-size: 0.8em; 
+    font-style: normal; 
+    text-transform: uppercase; 
+    line-height: 2.4em;
+  }
 }
 
 .total {
