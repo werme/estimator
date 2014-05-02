@@ -35,4 +35,9 @@ class Task < ActiveRecord::Base
   def total
     self.hours * self.rate
   end
+
+  def rate
+    # Rate is only set for the root task
+    self.read_attribute(:rate) || parent.rate
+  end
 end
