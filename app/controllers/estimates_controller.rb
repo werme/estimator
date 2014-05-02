@@ -6,24 +6,20 @@ class EstimatesController < ApplicationController
   end
 
   def show
-    @estimate = Estimate.find(params[:id])
+    # Lets eager load two levels of subtasks
+    @estimate = Estimate.includes(
+      tasks: {subtasks: {subtasks: :subtasks}}).find params[:id]
     @note = Note.new
-    @estimate.tasks.each { |t| unless t.tasks.empty? then t.hours = t.tasks.map(&:hours).inject(0, :+); t.save end }
-    @total = @estimate.tasks.map { |t| t.hours * t.rate }.sum
   end
 
   def new
     @estimate = Estimate.new
+    @templates = Template.all
   end
 
   def create
-    estimate = Estimate.new(estimate_params)
-
-    unless params[:default][:project_type_id].empty?
-      project_type = ProjectType.find(params[:default][:project_type_id])
-      estimate.tasks = project_type.tasks
-      estimate.tasks.each { |t| t.rate = project_type.default_rate || 0; t.hours = 0 }
-    end
+    estimate = Estimate.new estimate_params
+    estimate.author = current_user
 
     if estimate.save
       redirect_to estimate
@@ -34,13 +30,13 @@ class EstimatesController < ApplicationController
   end
 
   def edit
-    @estimate = Estimate.find(params[:id])
+    @estimate = Estimate.find params[:id] 
   end
 
   def update
     estimate = Estimate.find params[:id]
 
-    if estimate.update_attributes(estimate_params)
+    if estimate.update_attributes estimate_params
       redirect_to estimate
     else
       flash[:error] = estimate.errors.full_messages.to_sentence
@@ -54,28 +50,28 @@ class EstimatesController < ApplicationController
     redirect_to estimate
   end
 
-  def add_user
-    @estimate = Estimate.find(params[:estimate_id])
+  def new_editors
+    @estimate = Estimate.find params[:estimate_id]
   end
 
-  def update_users
-    # TODO
+  def add_editors
     estimate = Estimate.find params[:estimate_id]
 
     unless params[:editor].empty?
-      if User.find_by_email(params[:editor])
-        user = User.find_by_email(params[:editor])
-        if estimate.user == user
-          flash[:error] = "#{user.name} is the author of this project"
-        elsif estimate.editors.include? user
-          flash[:notice] = "#{user.name} was removed from this project"
-          estimate.editors.delete user
+      # Try to fetch a user from the given email
+      user = User.find_by_email params[:editor]
+    
+      unless user.nil?
+        if estimate.author == user or estimate.editors.include? user
+          flash[:notice] = "#{user.name} already has access to this project"
         else
           estimate.editors << user
           flash[:notice] = "Gave access to user #{user.name}"
         end
       else
-        flash[:error] = "No such user"
+        # Send av invite to emails not registered
+        flash[:notice] = "Sent an invite to #{params[:editor]} since no registered user was found."
+        UserMailer.invite(current_user, params[:editor]).deliver
       end
     end
 
@@ -85,6 +81,6 @@ class EstimatesController < ApplicationController
   private
 
   def estimate_params
-    params.require(:estimate).permit(:project, :description, :user_id)#, editors_attributes: [:user])
+    params.require(:estimate).permit(:project, :description, :template_id) #, editors_attributes: [:user])
   end
 end

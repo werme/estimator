@@ -1,6 +1,6 @@
 = form_for @task, :url => estimate_task_path(params[:estimate_id], @task) do |f|
   = f.text_field :name, :placeholder => "Name for task"
   = f.text_field :rate, :placeholder => "Rate per hour for task"
-  - if @task.tasks.empty?
+  - if @task.subtasks.empty?
     = f.text_field :hours, :placeholder => "Estimated number of hours to complete task "
   = f.submit

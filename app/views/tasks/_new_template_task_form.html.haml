@@ -1,0 +1,4 @@
+= form_for @task, url: template_tasks_path(params[:template_id]) do |f|
+  = f.text_field :name, placeholder: "Name for task"
+  = f.hidden_field :template_id, value: params[:template_id]
+  = f.submit

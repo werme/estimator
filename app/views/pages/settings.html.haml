@@ -3,12 +3,12 @@
 
 %h2 Project templates
 %p
-  - current_user.project_types.each do |p|
+  - current_user.templates.each do |p|
     %span.tag
       = link_to p.name, p
       = link_to content_tag(:i, nil, class: "icon-cancel"), p, :method => :delete, :class => "cross"
 
-= link_to new_project_type_path, class: "btn" do
+= link_to new_template_path, class: "btn" do
   %i.icon-doc-new
   New template
-  %span Create a template for new projects with default tasks and settings to build upon.
+  %span Create a template for new projects with default rates, tasks and other settings to build upon.
